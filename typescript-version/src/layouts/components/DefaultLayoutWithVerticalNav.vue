@@ -1,24 +1,31 @@
 <script lang="ts" setup>
-import { useTheme } from 'vuetify'
+// Icons
+import gamingIcon from '../../Icons/youtube/gaming.svg'
+import historyIcon from '../../Icons/youtube/history.svg'
+import homeIcon from '../../Icons/youtube/home.svg'
+import learningIcon from '../../Icons/youtube/learning.svg'
+import likeIcon from '../../Icons/youtube/like.svg'
+import liveIcon from '../../Icons/youtube/live.svg'
+import moviesIcon from '../../Icons/youtube/movies.svg'
+import musicIcon from '../../Icons/youtube/music.svg'
+import newsIcon from '../../Icons/youtube/news.svg'
+import notificationIcon from '../../Icons/youtube/notification.svg'
+import podcastIcon from '../../Icons/youtube/podcast.svg'
+import shoppingIcon from '../../Icons/youtube/shopping.svg'
+import shortIcon from '../../Icons/youtube/shorts.svg'
+import sportsIcon from '../../Icons/youtube/sports.svg'
+import startVideoIcon from '../../Icons/youtube/startVideo.svg'
+import subScriptionIcon from '../../Icons/youtube/subscription.svg'
+import trendingIcon from '../../Icons/youtube/trending.svg'
+import watchLaterIcon from '../../Icons/youtube/watchLater.svg'
 
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
-import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
-import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
 // Components
 import Footer from '@/layouts/components/Footer.vue'
-import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
-
-// Banner
-
-const vuetifyTheme = useTheme()
-
-const upgradeBanner = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
-})
 </script>
 
 <template>
@@ -35,37 +42,36 @@ const upgradeBanner = computed(() => {
         </IconBtn>
 
         <!-- 👉 Search -->
-        <div
-          class="d-flex align-center cursor-pointer"
-          style="user-select: none;"
-        >
-          <!-- 👉 Search Trigger button -->
-          <IconBtn>
-            <VIcon icon="bx-search" />
-          </IconBtn>
-
-          <span class="d-none d-md-flex align-center text-disabled">
-            <span class="me-3">Search</span>
-            <span class="meta-key">&#8984;K</span>
-          </span>
+        <div class="d-flex">
+          <VTextField
+            placeholder="Search"
+            class="yt-search-field mx-16"
+          >
+            <template #prepend-inner>
+              <VIcon icon="mdi-magnify" />
+            </template>
+            <template #append-inner>
+              <VBtn variant="text">
+                <VIcon icon="mdi-magnify" />
+              </VBtn>
+            </template>
+          </VTextField>
         </div>
+        <IconBtn>
+          <VIcon icon="mdi-microphone-settings" />
+        </IconBtn>
 
         <VSpacer />
 
-        <IconBtn
-          class="me-2"
-          href="https://github.com/themeselection/sneat-vuetify-vuejs-admin-template-free"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <VIcon icon="bxl-github" />
+        <IconBtn class="mx-2">
+          <VIcon :icon="startVideoIcon" />
         </IconBtn>
 
         <IconBtn class="me-2">
-          <VIcon icon="bx-bell" />
+          <VIcon :icon="notificationIcon" />
         </IconBtn>
 
-        <NavbarThemeSwitcher class="me-2" />
+        <!-- <NavbarThemeSwitcher class="me-2" /> -->
 
         <UserProfile />
       </div>
@@ -74,86 +80,132 @@ const upgradeBanner = computed(() => {
     <template #vertical-nav-content>
       <VerticalNavLink
         :item="{
-          title: 'Dashboard',
-          icon: 'bx-home',
-          to: '/dashboard',
+          title: 'Home',
+          icon: homeIcon,
+          to: '/home',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Account Settings',
-          icon: 'mdi-account-cog-outline',
-          to: '/account-settings',
+          title: 'Shorts',
+          icon: shortIcon,
+          to: '/shorts',
         }"
       />
+      <VerticalNavLink
+        :item="{
+          title: 'Subscription',
+          icon: subScriptionIcon,
+          to: '/subscription',
+        }"
+      />
+
+      <VDivider />
 
       <!-- 👉 Pages -->
       <VerticalNavSectionTitle
         :item="{
-          heading: 'Pages',
+          heading: 'You',
+          appendIcon: 'mdi-chevron-right',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Login',
-          icon: 'bx-log-in',
-          to: '/login',
+          title: 'History',
+          icon: historyIcon,
+          to: '/history',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Register',
-          icon: 'bx-user-plus',
-          to: '/register',
+          title: 'Watch later',
+          icon: watchLaterIcon,
+          to: '/watch-later',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Error',
-          icon: 'bx-info-circle',
-          to: '/no-existence',
+          title: 'Liked video',
+          icon: likeIcon,
+          to: '/liked',
         }"
       />
+      <VDivider />
 
       <!-- 👉 User Interface -->
       <VerticalNavSectionTitle
         :item="{
-          heading: 'User Interface',
+          heading: 'Explore',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Typography',
-          icon: 'mdi-alpha-t-box-outline',
-          to: '/typography',
+          title: 'Trending',
+          icon: trendingIcon,
+          to: '/trending',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Icons',
-          icon: 'bx-show',
-          to: '/icons',
+          title: 'Shopping',
+          icon: shoppingIcon,
+          to: '/shopping',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Cards',
-          icon: 'bx-credit-card',
-          to: '/cards',
+          title: 'Music',
+          icon: musicIcon,
+          to: '/music',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Tables',
-          icon: 'bx-table',
-          to: '/tables',
+          title: 'Movies',
+          icon: moviesIcon,
+          to: '/movies',
         }"
       />
       <VerticalNavLink
         :item="{
-          title: 'Form Layouts',
-          icon: 'mdi-form-select',
-          to: '/form-layouts',
+          title: 'Live',
+          icon: liveIcon,
+          to: '/live',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
+          title: 'Gaming',
+          icon: gamingIcon,
+          to: '/gaming',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
+          title: 'News',
+          icon: newsIcon,
+          to: '/news',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
+          title: 'Sports',
+          icon: sportsIcon,
+          to: '/sports',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
+          title: 'Learning',
+          icon: learningIcon,
+          to: '/learning',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
+          title: 'Podcasts',
+          icon: podcastIcon,
+          to: '/podcasts',
         }"
       />
     </template>
@@ -165,15 +217,7 @@ const upgradeBanner = computed(() => {
         target="_blank"
         rel="noopener noreferrer"
         style="margin-left: 7px;"
-      >
-        <img
-          :src="upgradeBanner"
-          alt="upgrade-banner"
-          transition="scale-transition"
-          class="upgrade-banner mx-auto"
-          style="max-width: 230px;"
-        >
-      </a>
+      />
     </template>
 
     <!-- 👉 Pages -->
