@@ -12,23 +12,46 @@ const props = defineProps<Props>()
 
 // Composable
 const { convertViews, formatTimeDifference } = useVideo()
+
+// Data
+const isVideoStart = ref<boolean>(false)
 </script>
 
 <template>
   <div class="yt-video">
-    <VCard class="yt-video__card">
-      <VImg :src="props?.video?.snippet?.thumbnails?.maxres?.url" />
+    <VCard
+      height="fit-content"
+      class="yt-video__card"
+    >
+      <VImg
+        v-if="!isVideoStart"
+        :src="props?.video?.snippet?.thumbnails?.medium?.url"
+      />
+      <div
+        v-else
+        style="height: 12.375rem;"
+      >
+        <video
+          controls
+          class="yt-video__video-el"
+        >
+          <source
+            src="https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4"
+            type="video / mp4"
+          >
+        </video>
+      </div>
     </VCard>
     <div class="yt-video0-card__description-info mt-2">
       <VRow>
         <VCol cols="2">
           <VAvatar>
-            <VImg :src="props?.video?.snippet?.thumbnails?.maxres?.url" />
+            <VImg :src="props?.video?.snippet?.thumbnails?.high?.url" />
           </VAvatar>
         </VCol>
         <VCol cols="8">
           <div class="yt-video__card-title">
-            {{ props?.video?.snippet?.localized?.title }}
+            {{ props?.video?.snippet?.description }}
           </div>
         </VCol>
         <VCol cols="2">
@@ -60,7 +83,7 @@ const { convertViews, formatTimeDifference } = useVideo()
 <style scoped lang="scss">
   .yt-video {
     &__card {
-      border-radius: 12px;
+      border-radius: 0.75rem;
     }
 
     &__card-title {
@@ -84,7 +107,7 @@ const { convertViews, formatTimeDifference } = useVideo()
     &__channel-title {
       overflow: hidden;
       color: #606060;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 500;
       margin-inline-start: 18%;
       text-overflow: ellipsis;
@@ -94,10 +117,15 @@ const { convertViews, formatTimeDifference } = useVideo()
       overflow: hidden;
       color: #606060;
       font-family: Roboto, Arial, sans-serif;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 500;
       -webkit-line-clamp: 2;
       margin-inline-start: 18%;
     }
+
+    // &__video-el {
+    //   block-size: 12.375rem;
+    //   inline-size: 21.9375rem;
+    // }
   }
 </style>

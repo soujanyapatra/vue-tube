@@ -1,39 +1,56 @@
 <script setup lang="ts">
-import $http from '../plugins/axios'
+import { useVideoStore } from '../store/videolist'
 import VdCard from '@/components/videoCard.vue'
 
-const videoList = ref<any>()
-const YOUR_API_KEY = ref<any>('AIzaSyAEBy04vqQwXnPFbRdIzbZTDqVvPLPYZDM')
+// Composable
+const video = useVideoStore()
+const { videoList } = storeToRefs(video)
+const { getVideoList } = useVideoStore()
 
-const getVideoList = async () => {
-  try {
-    const { data } = await $http.get(`/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=IN&key=${YOUR_API_KEY.value}`)
+// Methods
+const handleScroll = () => {
+  const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
 
-    videoList.value = data
-    console.log(videoList)
-  }
-  catch (error) {
-    console.error('Error:', error)
-  }
+  if (isAtBottom)
+    getVideoList()
 }
+
+// Hooks
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 onMounted(async () => {
   await getVideoList()
+  window.addEventListener('scroll', handleScroll)
 })
 </script>
 
 <template>
-  <div />
-  <VRow>
-    <VCol
-      v-for="details in videoList?.items"
-      :key="details.id"
-      cols="12"
-      sm="6"
-      md="4"
-      lg="4"
-    >
-      <VdCard :video="details" />
-    </VCol>
-  </VRow>
+  <VInfiniteScroll
+    :height="300"
+    :items="videoList"
+    @load="getVideoList"
+  >
+    <VRow>
+      <template
+        v-for="(details, index) in videoList"
+        :key="details.id"
+      >
+        <VCol
+          cols="12"
+          sm="6"
+          md="4"
+          lg="4"
+        >
+          <div
+            class="pa-2"
+            :class="[index % 2 === 0 ? 'bg-grey-lighten-2' : '']"
+          >
+            <VdCard :video="details" />
+          </div>
+        </VCol>
+      </template>
+    </VRow>
+  </VInfiniteScroll>
 </template>

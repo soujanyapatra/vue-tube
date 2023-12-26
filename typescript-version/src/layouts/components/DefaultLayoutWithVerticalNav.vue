@@ -24,7 +24,6 @@ import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
 // Components
-import Footer from '@/layouts/components/Footer.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
 </script>
 
@@ -224,9 +223,11 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
     <slot />
 
     <!-- 👉 Footer -->
-    <template #footer>
+    <!--
+      <template #footer>
       <Footer />
-    </template>
+      </template>
+    -->
   </VerticalNavLayout>
 </template>
 
