@@ -1,23 +1,24 @@
 <script lang="ts" setup>
+
 // Icons
-import gamingIcon from '../../Icons/youtube/gaming.svg'
-import historyIcon from '../../Icons/youtube/history.svg'
-import homeIcon from '../../Icons/youtube/home.svg'
-import learningIcon from '../../Icons/youtube/learning.svg'
-import likeIcon from '../../Icons/youtube/like.svg'
-import liveIcon from '../../Icons/youtube/live.svg'
-import moviesIcon from '../../Icons/youtube/movies.svg'
-import musicIcon from '../../Icons/youtube/music.svg'
-import newsIcon from '../../Icons/youtube/news.svg'
-import notificationIcon from '../../Icons/youtube/notification.svg'
-import podcastIcon from '../../Icons/youtube/podcast.svg'
-import shoppingIcon from '../../Icons/youtube/shopping.svg'
-import shortIcon from '../../Icons/youtube/shorts.svg'
-import sportsIcon from '../../Icons/youtube/sports.svg'
-import startVideoIcon from '../../Icons/youtube/startVideo.svg'
-import subScriptionIcon from '../../Icons/youtube/subscription.svg'
-import trendingIcon from '../../Icons/youtube/trending.svg'
-import watchLaterIcon from '../../Icons/youtube/watchLater.svg'
+import gamingIcon from '@/Icons/youtube/gaming.svg'
+import historyIcon from '@/Icons/youtube/history.svg'
+import homeIcon from '@/Icons/youtube/home.svg'
+import learningIcon from '@/Icons/youtube/learning.svg'
+import likeIcon from '@/Icons/youtube/like.svg'
+import liveIcon from '@/Icons/youtube/live.svg'
+import moviesIcon from '@/Icons/youtube/movies.svg'
+import musicIcon from '@/Icons/youtube/music.svg'
+import newsIcon from '@/Icons/youtube/news.svg'
+import notificationIcon from '@/Icons/youtube/notification.svg'
+import podcastIcon from '@/Icons/youtube/podcast.svg'
+import shoppingIcon from '@/Icons/youtube/shopping.svg'
+import shortIcon from '@/Icons/youtube/shorts.svg'
+import sportsIcon from '@/Icons/youtube/sports.svg'
+import startVideoIcon from '@/Icons/youtube/startVideo.svg'
+import subScriptionIcon from '@/Icons/youtube/subscription.svg'
+import trendingIcon from '@/Icons/youtube/trending.svg'
+import watchLaterIcon from '@/Icons/youtube/watchLater.svg'
 
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
@@ -221,13 +222,6 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
     <!-- 👉 Pages -->
     <slot />
-
-    <!-- 👉 Footer -->
-    <!--
-      <template #footer>
-      <Footer />
-      </template>
-    -->
   </VerticalNavLayout>
 </template>
 

@@ -1,4 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { isEmpty } from 'lodash'
+
+// Method
+const checkAuth = () => {
+  const isLogin = JSON.parse(localStorage.getItem('user'))
+  if (!isEmpty(isLogin))
+    return true
+
+  else
+    return false
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,6 +21,7 @@ const router = createRouter({
       children: [
         {
           path: 'home',
+          name: 'Home',
           component: () => import('../pages/home.vue'),
         },
         {
@@ -40,10 +52,12 @@ const router = createRouter({
       children: [
         {
           path: 'login',
+          name: 'Login',
           component: () => import('../pages/login.vue'),
         },
         {
           path: 'register',
+          name: 'Register',
           component: () => import('../pages/register.vue'),
         },
         {
@@ -53,6 +67,15 @@ const router = createRouter({
       ],
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !checkAuth())
+    next({ name: 'Login' })
+  else if (checkAuth() && (to.name === 'Login' || to.name === 'Register'))
+    next({ name: 'Home' })
+  else
+    next()
 })
 
 export default router

@@ -1,5 +1,29 @@
 <script setup lang="ts">
-import avatar1 from '@images/avatars/avatar-1.png'
+import { isEmpty } from 'lodash'
+import { useRouter } from 'vue-router'
+import { googleLogout } from 'vue3-google-login'
+import { useUserStore } from '@/store/userStore'
+
+// Composables
+const userStore = useUserStore()
+const { userData, dummyData } = storeToRefs(userStore)
+const router = useRouter()
+
+// Methods
+const logout = () => {
+  googleLogout()
+  localStorage.clear()
+  userData.value = dummyData.value
+  nextTick(() => {
+    router.push('/login')
+  })
+}
+
+// Hooks
+onMounted(() => {
+  if (isEmpty(userData.value.email))
+    userData.value = JSON.parse(localStorage.getItem('user'))
+})
 </script>
 
 <template>
@@ -8,12 +32,11 @@ import avatar1 from '@images/avatars/avatar-1.png'
     color="primary"
     variant="tonal"
   >
-    <VImg :src="avatar1" />
+    <VImg :src="userData?.picture" />
 
     <!-- SECTION Menu -->
     <VMenu
       activator="parent"
-      width="230"
       location="bottom end"
       offset="14px"
     >
@@ -22,27 +45,22 @@ import avatar1 from '@images/avatars/avatar-1.png'
         <VListItem>
           <template #prepend>
             <VListItemAction start>
-              <VBadge
-                dot
-                location="bottom right"
-                offset-x="3"
-                offset-y="3"
-                color="success"
+              <VAvatar
+                color="primary"
+                variant="tonal"
               >
-                <VAvatar
-                  color="primary"
-                  variant="tonal"
-                >
-                  <VImg :src="avatar1" />
-                </VAvatar>
-              </VBadge>
+                <VImg :src="userData?.picture" />
+              </VAvatar>
             </VListItemAction>
           </template>
 
           <VListItemTitle class="font-weight-semibold">
-            John Doe
+            {{ `${userData?.given_name} ${userData?.family_name}` }}
           </VListItemTitle>
-          <VListItemSubtitle>Admin</VListItemSubtitle>
+          <VListItemSubtitle>{{ userData?.email }}</VListItemSubtitle>
+          <VListItemSubtitle class="mt-2">
+            create a channel
+          </VListItemSubtitle>
         </VListItem>
         <VDivider class="my-2" />
 
@@ -111,7 +129,9 @@ import avatar1 from '@images/avatars/avatar-1.png'
             />
           </template>
 
-          <VListItemTitle>Logout</VListItemTitle>
+          <VListItemTitle @click="logout">
+            Logout
+          </VListItemTitle>
         </VListItem>
       </VList>
     </VMenu>

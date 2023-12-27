@@ -208,7 +208,6 @@ const target = join(__dirname, 'icons-bundle.js');
       removeMetaData(content)
       minifyIconSet(content)
       bundle += `addCollection(${JSON.stringify(content)});\n`
-      console.log(`Bundled icons from ${filename}`)
     }
   }
 
@@ -273,7 +272,6 @@ const target = join(__dirname, 'icons-bundle.js');
         // Update icon from SVG instance
         iconSet.fromSVG(name, svg)
       })
-      console.log(`Bundled ${iconSet.count()} icons from ${source.dir}`)
 
       // Export to JSON
       const content = iconSet.export()
@@ -284,8 +282,6 @@ const target = join(__dirname, 'icons-bundle.js');
 
   // Save to file
   await fs.writeFile(target, bundle, 'utf8')
-
-  console.log(`Saved ${target} (${bundle.length} bytes)`)
 })().catch(err => {
   console.error(err)
 })

@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import { googleSdkLoaded } from 'vue3-google-login'
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-import logo from '@images/logo.svg?raw'
+import logo from '@images/png/YouTube Play Logo Png.png'
+import { useUserStore } from '@/store/userStore'
 
+// Composable
+const userStore = useUserStore()
+
+const { clientId } = storeToRefs(userStore)
+
+const { sendCodeToBackend } = userStore
+
+// Data
 const form = ref({
   email: '',
   password: '',
@@ -9,6 +19,29 @@ const form = ref({
 })
 
 const isPasswordVisible = ref(false)
+
+// Methods
+const signInWithGoogle = () => {
+  googleSdkLoaded(google => {
+    google.accounts.oauth2
+      .initCodeClient({
+        client_id:
+              clientId.value,
+        scope: 'email profile openid',
+        redirect_uri: 'http://localhost:5173',
+        callback: response => {
+          if (response.code)
+            sendCodeToBackend(response.code)
+        },
+      })
+      .requestCode()
+  })
+}
+
+const getSignUpRequest = (v: any) => {
+  if (v.provider === 'google')
+    signInWithGoogle()
+}
 </script>
 
 <template>
@@ -20,25 +53,23 @@ const isPasswordVisible = ref(false)
       <VCardItem class="justify-center">
         <template #prepend>
           <div class="d-flex">
-            <div
-              class="d-flex text-primary"
-              v-html="logo"
+            <VImg
+              :src="logo"
+              height="30"
+              width="30"
             />
           </div>
         </template>
 
         <VCardTitle class="text-2xl font-weight-bold">
-          sneat
+          Vue tube
         </VCardTitle>
       </VCardItem>
 
       <VCardText class="pt-2">
         <h5 class="text-h5 mb-1">
-          Welcome to sneat! 👋🏻
+          Welcome to vuetu
         </h5>
-        <p class="mb-0">
-          Please sign-in to your account and start the adventure
-        </p>
       </VCardText>
 
       <VCardText>
@@ -118,7 +149,7 @@ const isPasswordVisible = ref(false)
               cols="12"
               class="text-center"
             >
-              <AuthProvider />
+              <AuthProvider @signup="getSignUpRequest" />
             </VCol>
           </VRow>
         </VForm>
