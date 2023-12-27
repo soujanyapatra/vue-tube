@@ -25,8 +25,9 @@ const router = createRouter({
           component: () => import('../pages/home.vue'),
         },
         {
-          path: 'shorts',
-          component: () => import('../pages/shorts.vue'),
+          path: 'trending',
+          name: 'Trending',
+          component: () => import('../pages/trending.vue'),
         },
         {
           path: 'subscription',

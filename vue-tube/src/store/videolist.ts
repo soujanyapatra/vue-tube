@@ -40,11 +40,12 @@ export const useVideoStore = defineStore('video', () => {
   const YOUR_API_KEY = ref<string>('AIzaSyAbmQ1ZdsmCgWYuQHbTEPuzomWGOJEv3YY')
   const nextPageToken = ref<string>('')
   const startLoading = ref<boolean>(false)
+  const trendingVideos = ref<any>([])
 
   const getVideoList = async () => {
     try {
       // for not to exhaust API limit
-      if (videoList.value)
+      if (videoList.value.length)
         return
 
       startLoading.value = true
@@ -59,7 +60,7 @@ export const useVideoStore = defineStore('video', () => {
         pageToken: nextPageToken.value,
       }
 
-      const { data } = await $http.get('https://www.googleapis.com/youtube/v3/search', { params })
+      const { data } = await $http.get('/youtube/v3/search', { params })
 
       if (data) {
         console.log(data.items)
@@ -74,14 +75,46 @@ export const useVideoStore = defineStore('video', () => {
     }
   }
 
+  const trendingVideoList = async () => {
+    try {
+      // for not to exhaust API limit
+      if (trendingVideos.value.length)
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet,contentDetails,statistics',
+        chart: 'mostPopular',
+        regionCode: 'IN',
+        maxResults: limit.value,
+        pageToken: nextPageToken.value,
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+
+      if (data) {
+        console.log(data.items)
+        trendingVideos.value.push(...data.items)
+
+        nextPageToken.value = data.nextPageToken
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
   return {
     // Data
     videoList,
     limit,
     startLoading,
+    trendingVideos,
 
     // Function
     getVideoList,
+    trendingVideoList,
   }
 })
 
