@@ -7,9 +7,10 @@
     "test": "jest",
     "lint": "eslint . -c .eslintrc.js --fix --ext .ts,.js,.vue,.tsx,.jsx",
     "build:icons": "tsc -b src/@iconify && node src/@iconify/build-icons.js",
-    "dev": "vite",
+    "serve": "vue-cli-service serve --port 3000",
+    "dev": "vite --port 5173",
     "postinstall": "npm run build:icons",
-    "preview": "vite preview --port 5050",
+    "preview": "vite preview --port 5173",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
