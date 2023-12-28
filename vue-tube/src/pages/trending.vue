@@ -17,16 +17,15 @@ const activeTab = computed(() => {
 })
 
 // tabs
-const tabs = [
+const tabs = ref<any[]>([
   { title: 'Now', tab: 'now' },
   { title: 'Music', tab: 'music' },
   { title: 'Gaming', tab: 'gaming' },
   { title: 'Movies', tab: 'movies' },
-]
+])
 
 // Methods
 const goTo = (v: any) => {
-  console.log(v)
   router.push({
     path: '/trending',
     hash: `#${v}`,
