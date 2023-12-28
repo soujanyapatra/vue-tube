@@ -79,4 +79,8 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
+router.afterEach(() => {
+  // Complete the animation of the route progress bar.
+})
+
 export default router

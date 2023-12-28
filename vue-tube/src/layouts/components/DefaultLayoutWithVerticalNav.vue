@@ -20,12 +20,19 @@ import subScriptionIcon from '@/Icons/youtube/subscription.svg'
 import trendingIcon from '@/Icons/youtube/trending.svg'
 import watchLaterIcon from '@/Icons/youtube/watchLater.svg'
 
+// Components
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
-// Components
 import UserProfile from '@/layouts/components/UserProfile.vue'
+
+import { useVideoStore } from '@/store/videolist'
+
+// Composable
+const video = useVideoStore()
+
+const { searchModelValue } = storeToRefs(video)
 </script>
 
 <template>
@@ -44,6 +51,7 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
         <!-- 👉 Search -->
         <div class="d-flex">
           <VTextField
+            v-model="searchModelValue"
             placeholder="Search"
             class="yt-search-field mx-16"
           >

@@ -4,8 +4,12 @@ import VdCard from '@/components/videoCard.vue'
 
 // Composable
 const video = useVideoStore()
-const { videoList } = storeToRefs(video)
+const { videoList, searchModelValue } = storeToRefs(video)
 const { getVideoList } = useVideoStore()
+
+// Computed
+// Filter from frontend due to API quota limit
+const filterVideoList = computed(() => videoList.value?.filter((el: any) => el?.snippet?.description.toUpperCase()?.includes(searchModelValue.value.toUpperCase())))
 
 // Methods
 const handleScroll = () => {
@@ -29,12 +33,12 @@ onMounted(async () => {
 <template>
   <VInfiniteScroll
     :height="300"
-    :items="videoList"
+    :items="filterVideoList"
     @load="getVideoList"
   >
     <VRow>
       <template
-        v-for="(details, index) in videoList"
+        v-for="(details, index) in filterVideoList"
         :key="details.id"
       >
         <VCol

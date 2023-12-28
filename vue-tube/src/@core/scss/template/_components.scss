@@ -74,22 +74,28 @@
   inline-size: 37.5rem;
 
   .v-input__control {
-    max-block-size: 45px !important;
+    max-block-size: 2.8125rem !important;
+    .v-field__field {
+      .v-field__input {
+        max-height: 2.8125rem !important;
+        min-height: 2.8125rem !important;
+      }
+    }
   }
 
   .v-input .v-input__slot {
-    border-radius: 30px !important;
+    border-radius: 1.875rem !important;
   }
 
   .v-field__prepend-inner {
-    block-size: 45px;
+    block-size: 2.8125rem;
   }
 
   .v-field__append-inner {
-    block-size: 45px;
+    block-size: 2.8125rem;
   }
 
   .v-field__field {
-    block-size: 45px;
+    block-size: 2.8125rem;
   }
 }

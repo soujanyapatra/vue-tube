@@ -18,8 +18,13 @@ const { convertViews, formatTimeDifference } = useVideo()
 
 <template>
   <div class="yt-video">
-    <VRow class="pa-0">
-      <VCol cols="3">
+    <VRow>
+      <VCol
+        cols="12"
+        md="4"
+        sm="4"
+        lg="3"
+      >
         <VCard
           height="170"
           width="300"
@@ -28,11 +33,19 @@ const { convertViews, formatTimeDifference } = useVideo()
           <VImg :src="props?.video?.snippet?.thumbnails?.medium?.url" />
         </VCard>
       </VCol>
-      <VCol cols="9">
+      <VCol
+        cols="12"
+        md="7"
+        sm="7"
+        lg="8"
+      >
         <div class="yt-video0-card__description-info">
           <VRow>
-            <VCol cols="10">
-              <div class="yt-video__card-title">
+            <VCol
+              cols="10"
+              class="d-flex"
+            >
+              <div class="d-flex align-center yt-video__card-title">
                 {{ props?.video?.snippet?.title }}
               </div>
             </VCol>
@@ -40,30 +53,32 @@ const { convertViews, formatTimeDifference } = useVideo()
               <VBtn
                 icon=""
                 variant="plain"
+                class="float-right"
               >
                 <VIcon icon="mdi-dots-vertical" />
               </VBtn>
             </VCol>
           </VRow>
           <VRow>
-            <VCol>
-              <div class="yt-video__channel-title">
-                {{ props?.video?.snippet?.channelTitle }}
-              </div>
-            </VCol>
-            <VCol>
-              <div class="yt-video__views">
-                {{ convertViews(props?.video?.statistics?.viewCount) }}
-              </div>
-            </VCol>
-            <VCol>
-              <div class="yt-video__views">
-                {{ formatTimeDifference(moment(props?.video?.snippet?.publishedAt)) }}
+            <VCol
+              cols="6"
+              class="pt-0"
+            >
+              <div class="d-flex">
+                <div class="yt-video__channel-title">
+                  {{ props?.video?.snippet?.channelTitle }}
+                </div>
+                <div class="yt-video__views mx-2">
+                  {{ convertViews(props?.video?.statistics?.viewCount) }}
+                </div>
+                <div class="yt-video__views mx-3">
+                  {{ formatTimeDifference(moment(props?.video?.snippet?.publishedAt)) }}
+                </div>
               </div>
             </VCol>
           </VRow>
           <VRow>
-            <VCol>
+            <VCol class="pt-0">
               <div class="yt-video__description">
                 {{ props?.video?.snippet?.description.substring(0, 200) }}
               </div>
@@ -77,14 +92,14 @@ const { convertViews, formatTimeDifference } = useVideo()
 
 <style scoped lang="scss">
   .yt-video {
+    .v-col-lg-3 {
+    max-width: fit-content;
+    }
     &__card {
       border-radius: 0.75rem;
     }
 
     &__card-title {
-      display: block;
-      display: box;
-      display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
       color: #0f0f0f;
@@ -104,7 +119,6 @@ const { convertViews, formatTimeDifference } = useVideo()
       color: #606060;
       font-size: 0.875rem;
       font-weight: 500;
-      margin-inline-start: 18%;
       text-overflow: ellipsis;
     }
 
@@ -115,12 +129,10 @@ const { convertViews, formatTimeDifference } = useVideo()
       font-size: 0.875rem;
       font-weight: 500;
       -webkit-line-clamp: 2;
-      margin-inline-start: 18%;
     }
     &__description {
       color: #606060;
       padding-top: 0.5rem;
-      margin-bottom: 0.5rem;
       font-family: "Roboto","Arial",sans-serif;
       font-size: 0.875rem;
       line-height: 1.2rem;

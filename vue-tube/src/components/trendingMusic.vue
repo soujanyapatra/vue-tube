@@ -4,19 +4,19 @@ import TdVdCard from '@/components/tdVdCard.vue'
 
 // Composable
 const video = useVideoStore()
-const { trendingVideos, searchModelValue } = storeToRefs(video)
-const { trendingVideoList } = useVideoStore()
+const { trendingMusicsList, searchModelValue } = storeToRefs(video)
+const { trendingMusicList } = useVideoStore()
 
 // Computed
 // Filter from frontend due to API quota limit
-const filterVideoList = computed(() => trendingVideos.value?.filter((el: any) => el?.snippet?.title.toUpperCase()?.includes(searchModelValue.value.toUpperCase())))
+const filterMusicList = computed(() => trendingMusicsList.value?.filter((el: any) => el?.snippet?.title.toUpperCase()?.includes(searchModelValue.value.toUpperCase())))
 
 // Methods
 const handleScroll = () => {
   const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
 
   if (isAtBottom)
-    trendingVideoList()
+    trendingMusicList()
 }
 
 // Hooks
@@ -25,7 +25,7 @@ onUnmounted(() => {
 })
 
 onMounted(async () => {
-  await trendingVideoList()
+  await trendingMusicList()
   window.addEventListener('scroll', handleScroll)
 })
 </script>
@@ -33,11 +33,11 @@ onMounted(async () => {
 <template>
   <VInfiniteScroll
     :height="300"
-    :items="filterVideoList"
-    @load="trendingVideoList"
+    :items="filterMusicList"
+    @load="trendingMusicList"
   >
     <template
-      v-for="(details, index) in filterVideoList"
+      v-for="(details, index) in filterMusicList"
       :key="details.id"
     >
       <div

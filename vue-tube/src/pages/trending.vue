@@ -1,11 +1,20 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import TrendingNow from '@/components/trendingNow.vue'
+import TrendingMusic from '@/components/trendingMusic.vue'
+import TrendingGame from '@/components/trendingGame.vue'
+import TrendingMovie from '@/components/trendingMovie.vue'
 
 const route = useRoute()
+const router = useRouter()
 
 // Data
-const activeTab = ref(route.params.tab)
+const activeTab = computed(() => {
+  if (route.hash)
+    return route.hash.replaceAll('#', '')
+
+  return 'now'
+})
 
 // tabs
 const tabs = [
@@ -14,29 +23,44 @@ const tabs = [
   { title: 'Gaming', tab: 'gaming' },
   { title: 'Movies', tab: 'movies' },
 ]
+
+// Methods
+const goTo = (v: any) => {
+  console.log(v)
+  router.push({
+    path: '/trending',
+    hash: `#${v}`,
+  })
+}
 </script>
 
 <template>
   <div class="yt-trending">
     <VRow>
-      <VCol cols="2">
-        <VImg
-          src="https://www.youtube.com/img/trending/avatar/trending.png"
-          height="80"
-          width="80"
-          alt=""
-          class="yt-trending__img"
-        />
-      </VCol>
-      <VCol cols="10">
-        <div class="d-flex">
-          <h1>Trending</h1>
-        </div>
+      <VCol
+        cols="4"
+        class="d-flex"
+      >
+        <VCol cols="4">
+          <VImg
+            src="https://www.youtube.com/img/trending/avatar/trending.png"
+            height="80"
+            width="80"
+            alt=""
+            class="yt-trending__img"
+          />
+        </VCol>
+        <VCol cols="8">
+          <div class="d-flex mt-3">
+            <h1>Trending</h1>
+          </div>
+        </VCol>
       </VCol>
     </VRow>
     <VTabs
       v-model="activeTab"
       show-arrows
+      @update:model-value="goTo"
     >
       <VTab
         v-for="item in tabs"
@@ -62,15 +86,15 @@ const tabs = [
       </VWindowItem>
 
       <VWindowItem value="music">
-        <div />
+        <TrendingMusic />
       </VWindowItem>
 
       <VWindowItem value="gaming">
-        <div />
+        <TrendingGame />
       </VWindowItem>
 
       <VWindowItem value="movies">
-        <div />
+        <TrendingMovie />
       </VWindowItem>
     </VWindow>
   </div>
@@ -83,6 +107,9 @@ const tabs = [
   }
   h1 {
     color: black;
+  }
+  .v-col-4 {
+    max-width: fit-content;
   }
   &__tab-btn {
     text-transform: capitalize;

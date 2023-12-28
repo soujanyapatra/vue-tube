@@ -41,6 +41,10 @@ export const useVideoStore = defineStore('video', () => {
   const nextPageToken = ref<string>('')
   const startLoading = ref<boolean>(false)
   const trendingVideos = ref<any>([])
+  const trendingMusicsList = ref<any>([])
+  const trendingGamesList = ref<any>([])
+  const trendingMoviesList = ref<any>([])
+  const searchModelValue = ref<any>('')
 
   const getVideoList = async () => {
     try {
@@ -63,7 +67,6 @@ export const useVideoStore = defineStore('video', () => {
       const { data } = await $http.get('/youtube/v3/search', { params })
 
       if (data) {
-        console.log(data.items)
         videoList.value.push(...data.items)
 
         nextPageToken.value = data.nextPageToken
@@ -92,10 +95,95 @@ export const useVideoStore = defineStore('video', () => {
       }
 
       const { data } = await $http.get('/youtube/v3/videos', { params })
-
       if (data) {
-        console.log(data.items)
         trendingVideos.value.push(...data.items)
+
+        nextPageToken.value = data.nextPageToken
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  const trendingMusicList = async () => {
+    try {
+      // for not to exhaust API limit
+      if (trendingMusicsList.value.length)
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet,contentDetails,statistics',
+        chart: 'mostPopular',
+        regionCode: 'IN',
+        maxResults: limit.value,
+        pageToken: nextPageToken.value,
+        videoCategoryId: '10',
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+      if (data) {
+        trendingMusicsList.value.push(...data.items)
+
+        nextPageToken.value = data.nextPageToken
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  const trendingGameList = async () => {
+    try {
+      // for not to exhaust API limit
+      if (trendingGamesList.value.length)
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet,contentDetails,statistics',
+        chart: 'mostPopular',
+        regionCode: 'IN',
+        maxResults: limit.value,
+        pageToken: nextPageToken.value,
+        videoCategoryId: '20',
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+      if (data) {
+        trendingGamesList.value.push(...data.items)
+
+        nextPageToken.value = data.nextPageToken
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  const trendingMovieList = async () => {
+    try {
+      // for not to exhaust API limit
+      if (trendingMoviesList.value.length)
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet,contentDetails,statistics',
+        chart: 'mostPopular',
+        regionCode: 'IN',
+        maxResults: limit.value,
+        pageToken: nextPageToken.value,
+        videoCategoryId: '25',
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+      if (data) {
+        trendingMoviesList.value.push(...data.items)
 
         nextPageToken.value = data.nextPageToken
       }
@@ -111,10 +199,17 @@ export const useVideoStore = defineStore('video', () => {
     limit,
     startLoading,
     trendingVideos,
+    searchModelValue,
+    trendingMusicsList,
+    trendingGamesList,
+    trendingMoviesList,
 
     // Function
     getVideoList,
     trendingVideoList,
+    trendingMusicList,
+    trendingGameList,
+    trendingMovieList,
   }
 })
 
