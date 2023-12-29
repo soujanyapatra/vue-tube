@@ -37,7 +37,7 @@ onMounted(() => {
     <VRow>
       <VCol cols="3">
         <div class="d-flex justify-center">
-          <VCard height="850" style="background:linear-gradient(rgb(17, 69, 114) 5%, rgba(17, 69, 114, 0.298) 14%, rgb(17, 69, 114) 57%)">
+          <VCard height="850" style="background:linear-gradient(#464F59 5%, #464F59 14%, #464F59 57%)">
             <div class="yt-watch-later__video-card pa-5 mx-4">
               <VCard
                 height="170"
@@ -46,42 +46,25 @@ onMounted(() => {
                 <VImg :src="trendingMoviesList[0]?.snippet?.thumbnails?.medium?.url" />
               </VCard>
               <div class="yt-watch-later__watch-title">
-                Watch later
+                Liked video
               </div>
               <span class="yt-watch-later__sub-details mt-2">2 videos No views Updated today</span>
               <div>
                 <IconBtn class="yt-watch-later__icon-btn">
                   <VIcon icon="tabler-download" />
                 </IconBtn>
-                <VMenu open-on-click>
-                  <template #activator="{ props: activate }">
-                    <IconBtn v-bind="activate" class="yt-watch-later__icon-btn">
-                      <VIcon icon="tabler-dots-vertical" />
-                    </IconBtn>
-                  </template>
-                  <VCard>
-                    <VList>
-                      <VListItem @click="">
-                        <template #title>
-                           Add videos
-                        </template>
-                        <template #prepend>
-                          <VIcon icon="mdi-plus" />
-                        </template>
-                      </VListItem>
-                      <VListItem @click="">
-                        <template #title>
-                           Remove watched videos
-                        </template>
-                        <template #prepend>
-                          <VIcon icon="mdi-minus-circle-outline" />
-                        </template>
-                      </VListItem>
-                    </VList>
-                  </VCard>
-                </VMenu>
               </div>
               <div class="mt-5">
+                <VBtn variant="text" class="yt-watch-later__buttons">
+                  <template #prepend>
+                    <VIcon icon="mdi-play" />
+                  </template>
+                  <template #default>
+                    <div class="yt-watch-later__btn-content">
+                      Play all
+                    </div>
+                  </template>
+                </VBtn>
                 <VBtn
                   variant="text" 
                   class="yt-watch-later__buttons mx-3"
@@ -92,16 +75,6 @@ onMounted(() => {
                   <template #default>
                     <div class="yt-watch-later__btn-content">
                       Shuffle
-                    </div>
-                  </template>
-                </VBtn>
-                <VBtn variant="text" class="yt-watch-later__buttons">
-                  <template #prepend>
-                    <VIcon icon="mdi-play" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Play all
                     </div>
                   </template>
                 </VBtn>

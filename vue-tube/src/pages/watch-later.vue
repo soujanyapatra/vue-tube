@@ -82,6 +82,16 @@ onMounted(() => {
                 </VMenu>
               </div>
               <div class="mt-5">
+                <VBtn variant="text" class="yt-watch-later__buttons">
+                  <template #prepend>
+                    <VIcon icon="mdi-play" />
+                  </template>
+                  <template #default>
+                    <div class="yt-watch-later__btn-content">
+                      Play all
+                    </div>
+                  </template>
+                </VBtn>
                 <VBtn
                   variant="text" 
                   class="yt-watch-later__buttons mx-3"
@@ -92,16 +102,6 @@ onMounted(() => {
                   <template #default>
                     <div class="yt-watch-later__btn-content">
                       Shuffle
-                    </div>
-                  </template>
-                </VBtn>
-                <VBtn variant="text" class="yt-watch-later__buttons">
-                  <template #prepend>
-                    <VIcon icon="mdi-play" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Play all
                     </div>
                   </template>
                 </VBtn>
