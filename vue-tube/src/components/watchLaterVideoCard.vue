@@ -5,6 +5,8 @@ import useVideo from '../composables/useVideo'
 // interface
 interface Props {
   video: any
+  number: number
+  icon: string
 }
 
 // props
@@ -26,8 +28,13 @@ const { convertViews, formatTimeDifference } = useVideo()
         lg="3"
       >
         <div class="d-flex justify-center">
-          <div class="d-flex mt-10">
-            <VIcon icon="mdi-drag-horizontal-variant" />
+          <div>
+            <div v-if="props?.number" class="d-flex mt-10 mr-2">
+              {{ props?.number }}
+            </div>
+            <div v-if="props?.icon" class="d-flex mt-10">
+              <VIcon :icon="props?.icon" />
+            </div>
           </div>
           <VCard
             height="100"

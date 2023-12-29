@@ -146,7 +146,7 @@ onMounted(() => {
                   class="pa-2"
                   :class="[index % 2 === 0 ? 'bg-grey-lighten-2' : '']"
                 >
-                  <WatchLaterVideoCard :video="details" />
+                  <WatchLaterVideoCard :video="details" icon="mdi-drag-horizontal-variant" />
                 </div>
               </template>
             </VInfiniteScroll>
