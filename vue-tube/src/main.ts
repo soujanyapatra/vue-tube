@@ -9,6 +9,7 @@ import '@layouts/styles/index.scss'
 import '@styles/styles.scss'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import Vue3ProgressBar from '@ctechhindi/vue3-progress-bar'
 
 loadFonts()
 
@@ -19,6 +20,7 @@ const app = createApp(App)
 app.use(vuetify)
 app.use(createPinia())
 app.use(router)
+app.use(Vue3ProgressBar)
 
 // Mount vue app
 app.mount('#app')

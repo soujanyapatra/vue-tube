@@ -71,7 +71,7 @@
 // custom design of components
 
 .yt-search-field {
-  inline-size: 37.5rem;
+  min-width: 31.25rem;
 
   .v-input__control {
     max-block-size: 2.8125rem !important;
@@ -98,4 +98,8 @@
   .v-field__field {
     block-size: 2.8125rem;
   }
+}
+
+.my-input.v-input .v-input__slot {
+  border-radius: 100px !important;
 }

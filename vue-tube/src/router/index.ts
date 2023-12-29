@@ -4,11 +4,8 @@ import { isEmpty } from 'lodash'
 // Method
 const checkAuth = () => {
   const isLogin = JSON.parse(localStorage.getItem('user'))
-  if (!isEmpty(isLogin))
-    return true
 
-  else
-    return false
+  return !isEmpty(isLogin)
 }
 
 const router = createRouter({
@@ -30,11 +27,17 @@ const router = createRouter({
           component: () => import('../pages/trending.vue'),
         },
         {
+          path: 'shorts',
+          name: 'Shorts',
+          component: () => import('../pages/shorts.vue'),
+        },
+        {
           path: 'subscription',
           component: () => import('../pages/subscription.vue'),
         },
         {
           path: 'history',
+          name: 'history',
           component: () => import('../pages/history.vue'),
         },
         {
@@ -80,7 +83,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  // Complete the animation of the route progress bar.
+  // progress?.finish()
 })
 
 export default router

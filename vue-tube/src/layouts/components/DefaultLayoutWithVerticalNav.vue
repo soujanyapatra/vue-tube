@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 // Icons
 import gamingIcon from '@/Icons/youtube/gaming.svg'
 import historyIcon from '@/Icons/youtube/history.svg'
@@ -40,48 +39,65 @@ const { searchModelValue } = storeToRefs(video)
     <!-- 👉 navbar -->
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
-        <!-- 👉 Vertical nav toggle in overlay mode -->
-        <IconBtn
-          class="ms-n3 d-lg-none"
-          @click="toggleVerticalOverlayNavActive(true)"
-        >
-          <VIcon icon="bx-menu" />
-        </IconBtn>
-
-        <!-- 👉 Search -->
-        <div class="d-flex">
-          <VTextField
-            v-model="searchModelValue"
-            placeholder="Search"
-            class="yt-search-field mx-16"
+        <VRow>
+          <VCol 
+            cols="12"
+            lg="1"
+            md="1"
+            sm="1">
+            <!-- 👉 Vertical nav toggle in overlay mode -->
+            <IconBtn
+              class="ms-n3 d-lg-none"
+              @click="toggleVerticalOverlayNavActive(true)"
+            >
+              <VIcon icon="bx-menu" />
+            </IconBtn>
+          </VCol>
+          <VCol
+            cols="12"
+            lg="9"
+            md="8"
+            sm="7"
+            class="d-flex justify-center"
           >
-            <template #prepend-inner>
-              <VIcon icon="mdi-magnify" />
-            </template>
-            <template #append-inner>
-              <VBtn variant="text">
-                <VIcon icon="mdi-magnify" />
-              </VBtn>
-            </template>
-          </VTextField>
-        </div>
-        <IconBtn>
-          <VIcon icon="mdi-microphone-settings" />
-        </IconBtn>
-
-        <VSpacer />
-
-        <IconBtn class="mx-2">
-          <VIcon :icon="startVideoIcon" />
-        </IconBtn>
-
-        <IconBtn class="me-2">
-          <VIcon :icon="notificationIcon" />
-        </IconBtn>
-
-        <!-- <NavbarThemeSwitcher class="me-2" /> -->
-
-        <UserProfile />
+            <div class="d-flex yt-topbar__search-tag">
+              <!-- 👉 Search -->
+              <VTextField
+                v-model="searchModelValue"
+                placeholder="Search"
+                rounded
+                class="yt-search-field my-input"
+              >
+                <template #prepend-inner>
+                  <VIcon icon="mdi-magnify" />
+                </template>
+                <template #append-inner>
+                  <VBtn variant="text">
+                    <VIcon icon="mdi-magnify" />
+                  </VBtn>
+                </template>
+              </VTextField>
+              <IconBtn class="mx-4">
+                <VIcon icon="mdi-microphone" />
+              </IconBtn>
+            </div>
+          </VCol>
+          <VCol
+            cols="12"
+            lg="2"
+            md="3"
+            sm="4"
+          >
+            <IconBtn class="mx-2">
+              <VIcon :icon="startVideoIcon" />
+            </IconBtn>
+            <IconBtn class="me-2">
+              <VIcon :icon="notificationIcon" />
+            </IconBtn>
+            <!-- <NavbarThemeSwitcher class="me-2" /> -->
+            <UserProfile />
+          </VCol>
+        </VRow>
       </div>
     </template>
 
@@ -242,4 +258,11 @@ const { searchModelValue } = storeToRefs(video)
   padding-block: 0.125rem;
   padding-inline: 0.25rem;
 }
+.yt-topbar {
+  &__search-tag {
+    max-width: 30rem;
+    min-width: fit-content;
+  }
+}
+
 </style>
