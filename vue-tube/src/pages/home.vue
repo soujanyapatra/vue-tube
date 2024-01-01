@@ -45,7 +45,8 @@ onMounted(async () => {
           cols="12"
           sm="6"
           md="4"
-          lg="4"
+          lg="3"
+          xs="12"
         >
           <div
             class="pa-2"

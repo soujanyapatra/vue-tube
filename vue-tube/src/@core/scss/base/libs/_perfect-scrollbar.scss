@@ -31,5 +31,6 @@ $ps-track-size: 0.5rem;
 
 .ps__thumb-x,
 .ps__thumb-y {
-  background-color: rgb(var(--v-theme-perfect-scrollbar-thumb)) !important;
+  background-color: #343333 !important;
+  width: 0.5rem !important;
 }

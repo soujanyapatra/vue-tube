@@ -98,6 +98,16 @@
   .v-field__field {
     block-size: 2.8125rem;
   }
+
+  .v-field__outline__start {
+    border-radius: 35px 0 0 35px !important;
+  }
+  .v-field__outline__start {
+    flex: 0 0 35px !important;
+  }
+  .v-field__outline__end {
+    border-radius: 0 35px 35px 0 !important;
+  }
 }
 
 .my-input.v-input .v-input__slot {

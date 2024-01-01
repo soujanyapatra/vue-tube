@@ -128,6 +128,9 @@
         opacity: var(--v-disabled-opacity);
         pointer-events: none;
       }
+      :hover {
+        background-color: #faf6f6ee !important;
+      }
     }
 
     // 👉 Vertical nav link

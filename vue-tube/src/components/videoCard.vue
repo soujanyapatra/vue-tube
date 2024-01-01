@@ -12,9 +12,20 @@ const props = defineProps<Props>()
 
 // Composable
 const { convertViews, formatTimeDifference } = useVideo()
+const router = useRouter()
 
 // Data
 const isVideoStart = ref<boolean>(false)
+
+// Methods
+const goToWatchScreen = () => {
+  router.push({
+    path: '/watch',
+    query: {
+      v: props?.video?.id?.videoId
+    }
+  })
+}
 </script>
 
 <template>
@@ -22,6 +33,7 @@ const isVideoStart = ref<boolean>(false)
     <VCard
       height="fit-content"
       class="yt-video__card"
+      @click.prevent="goToWatchScreen()"
     >
       <VImg
         v-if="!isVideoStart"

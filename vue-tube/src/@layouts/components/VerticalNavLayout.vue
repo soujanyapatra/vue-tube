@@ -122,6 +122,7 @@ export default defineComponent({
 
     .navbar-content-container {
       block-size: variables.$layout-vertical-nav-navbar-height;
+      box-shadow: none !important;
     }
 
     @at-root {

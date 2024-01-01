@@ -32,6 +32,11 @@ const router = createRouter({
           component: () => import('../pages/shorts.vue'),
         },
         {
+          path: '/watch',
+          name: 'WatchVideo',
+          component: () => import('../pages/watch.vue'),
+        },
+        {
           path: 'subscription',
           component: () => import('../pages/subscription.vue'),
         },
@@ -46,6 +51,7 @@ const router = createRouter({
         },
         {
           path: 'liked',
+          name: 'liked',
           component: () => import('../pages/liked.vue'),
         },
       ],

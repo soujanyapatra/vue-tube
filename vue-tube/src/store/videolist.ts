@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import $http from '@/plugins/axios'
+import { isEmpty } from 'lodash'
 
 export const useVideoStore = defineStore('video', () => {
   // Interface
@@ -45,6 +46,8 @@ export const useVideoStore = defineStore('video', () => {
   const trendingGamesList = ref<any>([])
   const trendingMoviesList = ref<any>([])
   const searchModelValue = ref<any>('')
+  const videoDetails = ref<any>({})
+  const suggestionVideos = ref<any[]>([])
 
   const getVideoList = async () => {
     try {
@@ -193,6 +196,59 @@ export const useVideoStore = defineStore('video', () => {
     }
   }
 
+  const getVideoById = async (id: string) => {
+    try {
+      // for not to exhaust API limit
+      if (!isEmpty(videoDetails.value))
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet,contentDetails,statistics',
+        regionCode: 'IN',
+        id: id
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+      if (data) {
+        videoDetails.value = data.items[0]
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  const getSuggestionVideoList = async () => {
+    try {
+      // for not to exhaust API limit
+      if (suggestionVideos.value.length)
+        return
+
+      const params = {
+        key: YOUR_API_KEY.value,
+        type: 'video',
+        part: 'snippet',
+        chart: 'mostPopular',
+        regionCode: 'IN',
+        maxResults: limit.value,
+        pageToken: nextPageToken.value,
+        videoCategoryId: videoDetails?.snippet?.categoryId,
+      }
+
+      const { data } = await $http.get('/youtube/v3/videos', { params })
+      if (data) {
+        suggestionVideos.value.push(...data.items)
+
+        nextPageToken.value = data.nextPageToken
+      }
+    }
+    catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
   return {
     // Data
     videoList,
@@ -203,6 +259,8 @@ export const useVideoStore = defineStore('video', () => {
     trendingMusicsList,
     trendingGamesList,
     trendingMoviesList,
+    videoDetails,
+    suggestionVideos,
 
     // Function
     getVideoList,
@@ -210,6 +268,8 @@ export const useVideoStore = defineStore('video', () => {
     trendingMusicList,
     trendingGameList,
     trendingMovieList,
+    getVideoById,
+    getSuggestionVideoList,
   }
 })
 

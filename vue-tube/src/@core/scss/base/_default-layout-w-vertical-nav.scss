@@ -57,7 +57,7 @@ $header: ".layout-navbar";
 
     &:not(.layout-navbar-sticky) {
       #{$header} {
-        margin-block-start: variables.$vertical-nav-floating-navbar-top;
+        margin-block-start: 0;
       }
     }
 

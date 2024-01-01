@@ -12,10 +12,10 @@ defineProps<{
       <!-- eslint-disable vue/no-v-text-v-html-on-component -->
       <div class="d-flex">
         <span
-          class="title-text yt-sidebar-heading-text"
+          class="yt-sidebar-heading-text"
           v-text="item.heading"
         />
-        <VIcon :icon="item?.appendIcon" />
+        <VIcon class="d-flex" :icon="item?.appendIcon" />
       </div>
       <!-- eslint-enable vue/no-v-text-v-html-on-component -->
     </div>
@@ -28,7 +28,9 @@ defineProps<{
   flex: 1;
   color: #0f0f0f;
   font-family: Roboto, Arial, sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
+  text-transform: capitalize;
+  font-size: 1rem;
 }
 </style>

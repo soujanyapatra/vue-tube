@@ -16,33 +16,32 @@ const useConverter = () => {
   }
 
   const formatTimeDifference = (timestamp: any) => {
-    const now = moment()
-    const timeDiffInSeconds = now.diff(timestamp, 'seconds')
-
-    if (timeDiffInSeconds < 60) {
-      return `${timeDiffInSeconds} seconds ago`
+    const now = moment();
+    const timeDiffInSeconds = now.diff(timestamp, 'seconds');
+  
+    switch (true) {
+      case timeDiffInSeconds < 60:
+        return `${timeDiffInSeconds} seconds ago`;
+      case timeDiffInSeconds < 3600:
+        const minutes = Math.floor(timeDiffInSeconds / 60);
+        return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+      case timeDiffInSeconds < 86400:
+        const hours = Math.floor(timeDiffInSeconds / 3600);
+        return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+      case timeDiffInSeconds < 604800:
+        const days = Math.floor(timeDiffInSeconds / 86400);
+        return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+      case timeDiffInSeconds < 2419200: // 4 weeks in seconds
+        const weeks = Math.floor(timeDiffInSeconds / 604800);
+        return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+      case timeDiffInSeconds < 29030400: // 12 months in seconds
+        const months = Math.floor(timeDiffInSeconds / 2419200);
+        return `${months} ${months === 1 ? 'month' : 'months'} ago`;
+      default:
+        const years = Math.floor(timeDiffInSeconds / 29030400);
+        return `${years} ${years === 1 ? 'year' : 'years'} ago`;
     }
-    else if (timeDiffInSeconds < 3600) {
-      const minutes = Math.floor(timeDiffInSeconds / 60)
-
-      return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`
-    }
-    else if (timeDiffInSeconds < 86400) {
-      const hours = Math.floor(timeDiffInSeconds / 3600)
-
-      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`
-    }
-    else if (timeDiffInSeconds < 604800) {
-      const days = Math.floor(timeDiffInSeconds / 86400)
-
-      return `${days} ${days === 1 ? 'day' : 'days'} ago`
-    }
-    else {
-      const weeks = Math.floor(timeDiffInSeconds / 604800)
-
-      return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`
-    }
-  }
+  };
 
   return { convertViews, formatTimeDifference }
 }

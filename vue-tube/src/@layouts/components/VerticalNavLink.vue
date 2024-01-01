@@ -17,13 +17,17 @@ defineProps<{
       :href="item.href"
     >
       <VIcon
-        :icon="item.icon"
+        v-if="item?.icon"
+        :icon="item?.icon"
         class="nav-item-icon"
       />
       <!-- 👉 Title -->
       <span class="nav-item-title mx-4 yt-sidebar-text">
         {{ item.title }}
       </span>
+      <!-- <VIcon  v-if="item?.appendIcon"
+        :icon="item?.appendIcon"
+      /> -->
     </Component>
   </li>
 </template>
