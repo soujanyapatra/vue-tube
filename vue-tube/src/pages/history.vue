@@ -57,19 +57,29 @@ onMounted(async () => {
     <div class="d-flex space-between yt-watch-history__section">
       <VRow>
         <VCol
-          cols="9"
+          xl="9"
+          lg="9"
+          md="8"
+          sm="6"
+          cols="12"
           class="mt-4"
         >
           <div
             v-for="details in filterVideoList"
             :key="details.etag"
           >
-            <div cols="12">
+            <div>
               <TdVdCard :video="details" />
             </div>
           </div>
         </VCol>
-        <VCol cols="2">
+        <VCol
+          xl="3"
+          lg="3"
+          md="4"
+          sm="6"
+          cols="12"
+        >
           <div>
             <VTextField
               v-model="searchFromHistory"

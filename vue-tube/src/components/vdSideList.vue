@@ -22,73 +22,55 @@ const { convertViews, formatTimeDifference } = useVideo()
   <div class="yt-video">
     <VRow>
       <VCol
-        cols="12"
+        lg="3"
         md="4"
         sm="4"
-        lg="3"
+        cols="12"
       >
         <div class="d-flex justify-center">
           <div>
             <div v-if="props?.number" class="d-flex mt-10 mr-2">
               {{ props?.number }}
             </div>
-            <div v-if="props?.icon" class="d-flex mt-10">
+            <div v-if="props?.icon" class="d-flex">
               <VIcon :icon="props?.icon" />
             </div>
           </div>
-          <VCard
-            height="100"
-            width="180"
-            class="yt-video__card"
-          >
+          <VCard class="yt-video__card">
             <VImg class="yt-video__img" :src="props?.video?.snippet?.thumbnails?.medium?.url" />
           </VCard>
         </div>
       </VCol>
       <VCol
-        cols="12"
-        md="7"
-        sm="7"
         lg="8"
+        sm="7"
+        md="7"
+        cols="12"
       >
         <div class="yt-video0-card__description-info">
-          <VRow>
-            <VCol
-              cols="10"
-              class="d-flex"
+          <div class="d-flex justify-space-between">
+            <div class="d-flex align-center yt-video__card-title">
+              {{ props?.video?.snippet?.title }}
+            </div>
+            <VBtn
+              icon=""
+              variant="plain"
+              class="float-right"
             >
-              <div class="d-flex align-center yt-video__card-title">
-                {{ props?.video?.snippet?.title }}
-              </div>
-            </VCol>
-            <VCol cols="2">
-              <VBtn
-                icon=""
-                variant="plain"
-                class="float-right mt-6"
-              >
-                <VIcon icon="mdi-dots-vertical" />
-              </VBtn>
-            </VCol>
-          </VRow>
-          <VRow>
-            <VCol
-              cols="6"
-              class="pt-0"
-            >
-              <div class="d-flex">
-                <div class="yt-video__channel-title">
-                  {{ props?.video?.snippet?.channelTitle }}
-                </div>
-                <div class="yt-video__views mx-2">
-                  {{ convertViews(props?.video?.statistics?.viewCount) }}
-                </div>
-                <div class="yt-video__views mx-3">
-                  {{ formatTimeDifference(moment(props?.video?.snippet?.publishedAt)) }}
-                </div>
-              </div>
-            </VCol>
-          </VRow>
+              <VIcon class="yt-video__icon" icon="mdi-dots-vertical" />
+            </VBtn>
+          </div>
+          <div class="d-flex mt-2">
+            <div class="yt-video__channel-title">
+              {{ props?.video?.snippet?.channelTitle }}
+            </div>
+            <div class="yt-video__views mx-2">
+              {{ convertViews(props?.video?.statistics?.viewCount) }}
+            </div>
+            <div class="yt-video__views mx-3">
+              {{ formatTimeDifference(moment(props?.video?.snippet?.publishedAt)) }}
+            </div>
+          </div>
         </div>
       </VCol>
     </VRow>
@@ -119,7 +101,7 @@ const { convertViews, formatTimeDifference } = useVideo()
       cursor: pointer;
       font-family: Roboto, Arial, sans-serif;
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       -webkit-line-clamp: 2;
       line-height: 1.3rem;
       max-block-size: 4rem;
@@ -159,6 +141,9 @@ const { convertViews, formatTimeDifference } = useVideo()
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
       white-space: normal;
+    }
+    &__icon {
+      color: black;
     }
   }
 </style>

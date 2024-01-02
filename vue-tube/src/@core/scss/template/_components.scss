@@ -71,7 +71,7 @@
 // custom design of components
 
 .yt-search-field {
-  min-width: 31.25rem;
+  // min-width: 31.25rem;
 
   .v-input__control {
     max-block-size: 2.8125rem !important;
@@ -112,4 +112,14 @@
 
 .my-input.v-input .v-input__slot {
   border-radius: 100px !important;
+}
+
+
+.yt-navbar-list {
+  &__sidebar-menu-icon {
+    padding: 0px !important;
+  }
+  .v-col-7, .v-col-4, .v-col-1 {
+    padding: 0px !important;
+  }
 }

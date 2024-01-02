@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useVideoStore } from '../store/videolist'
-import WatchLaterVideoCard from '@/components/watchLaterVideoCard.vue';
+import VdSide from '@/components/vdSideList.vue';
+import CustomVCard from '@/components/customVCard.vue'
 
 // Composable
 const video = useVideoStore()
@@ -35,55 +36,27 @@ onMounted(() => {
 <template>
   <div class="yt-watch-later">
     <VRow>
-      <VCol cols="3">
+      <VCol
+        xl="3"
+        lg="4"
+        md="12"
+        sm="12"
+        cols="12">
         <div class="d-flex justify-center">
-          <VCard height="850" style="background:linear-gradient(#464F59 5%, #464F59 14%, #464F59 57%)">
-            <div class="yt-watch-later__video-card pa-5 mx-4">
-              <VCard
-                height="170"
-                width="300"
-              >
-                <VImg :src="trendingMoviesList[0]?.snippet?.thumbnails?.medium?.url" />
-              </VCard>
-              <div class="yt-watch-later__watch-title">
-                Liked video
-              </div>
-              <span class="yt-watch-later__sub-details mt-2">2 videos No views Updated today</span>
-              <div>
-                <IconBtn class="yt-watch-later__icon-btn">
-                  <VIcon icon="tabler-download" />
-                </IconBtn>
-              </div>
-              <div class="mt-5">
-                <VBtn variant="text" class="yt-watch-later__buttons">
-                  <template #prepend>
-                    <VIcon icon="mdi-play" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Play all
-                    </div>
-                  </template>
-                </VBtn>
-                <VBtn
-                  variant="text" 
-                  class="yt-watch-later__buttons mx-3"
-                >
-                  <template #prepend>
-                    <VIcon icon="tabler-arrows-shuffle" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Shuffle
-                    </div>
-                  </template>
-                </VBtn>
-              </div>
-            </div>
-          </VCard>
+          <CustomVCard
+            :video="trendingMoviesList[0]" 
+            card-color="linear-gradient(rgb(70, 79, 89) 5%, rgb(164 169 174) 17%, rgb(70, 79, 89) 62%)"
+            type="like"
+          />
         </div>
       </VCol>
-      <VCol cols="9">
+      <VCol
+        xl="9"
+        lg="8"
+        md="12"
+        sm="12"
+        cols="12"
+      >
         <div>
           <VMenu open-on-click>
             <template #activator="{ props: activate }">
@@ -119,7 +92,7 @@ onMounted(() => {
                   class="pa-2"
                   :class="[index % 2 === 0 ? 'bg-grey-lighten-2' : '']"
                 >
-                  <WatchLaterVideoCard :video="details" :number="index + 1" />
+                  <VdSide :video="details" :number="index + 1" />
                 </div>
               </template>
             </VInfiniteScroll>

@@ -62,16 +62,20 @@ const goToWatchScreen = () => {
           </VAvatar>
         </VCol>
         <VCol cols="8">
-          <div class="yt-video__card-title">
-            {{ props?.video?.snippet?.description }}
+          <div 
+            class="yt-video__card-title" 
+            @click.prevent="goToWatchScreen()"
+          >
+            {{ props?.video?.snippet?.title }}
           </div>
         </VCol>
         <VCol cols="2">
           <VBtn
             icon=""
             variant="plain"
+            class="yt-video__home-more-buttons"
           >
-            <VIcon icon="mdi-dots-vertical" />
+            <VIcon class="yt-video__icon" icon="mdi-dots-vertical" />
           </VBtn>
         </VCol>
       </VRow>
@@ -134,10 +138,12 @@ const goToWatchScreen = () => {
       -webkit-line-clamp: 2;
       margin-inline-start: 18%;
     }
-
-    // &__video-el {
-    //   block-size: 12.375rem;
-    //   inline-size: 21.9375rem;
-    // }
+    &__home-more-buttons {
+      width: 30px;
+      height: 30px;
+    }
+    &__icon {
+      color: black;
+    }
   }
 </style>

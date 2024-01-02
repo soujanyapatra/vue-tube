@@ -172,6 +172,7 @@ export default defineComponent({
   }
 
   &:not(.layout-overlay-nav) .layout-content-wrapper {
+    // test for watch screen design
     padding-inline-start: variables.$layout-vertical-nav-width;
   }
 

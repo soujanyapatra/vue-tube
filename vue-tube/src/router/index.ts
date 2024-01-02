@@ -38,6 +38,7 @@ const router = createRouter({
         },
         {
           path: 'subscription',
+          name: 'subscription',
           component: () => import('../pages/subscription.vue'),
         },
         {
@@ -47,12 +48,18 @@ const router = createRouter({
         },
         {
           path: 'watch-later',
+          name: 'watch-later',
           component: () => import('../pages/watch-later.vue'),
         },
         {
           path: 'liked',
           name: 'liked',
           component: () => import('../pages/liked.vue'),
+        },
+        {
+          path: '/feed/you',
+          name: 'you',
+          component: () => import('../pages/feed/you.vue'),
         },
       ],
     },

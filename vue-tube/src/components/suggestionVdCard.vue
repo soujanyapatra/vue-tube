@@ -20,19 +20,23 @@ const { convertViews, formatTimeDifference } = useVideo()
   <div class="yt-video">
     <VRow>
       <VCol
-        cols="6"
+        xl="4"
+        md="4"
+        sm="4"
+        cols="12"
         class="yt-video__card-parent"
       >
         <VCard
-          height="120"
-          width="210"
           class="yt-video__card"
         >
           <VImg :src="props?.video?.snippet?.thumbnails?.medium?.url" />
         </VCard>
       </VCol>
       <VCol
-        cols="6"
+        xl="8"
+        md="8"
+        sm="8"
+        cols="12"
       >
         <div class="yt-video0-card__description-info">
           <VRow>

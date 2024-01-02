@@ -16,18 +16,17 @@ defineProps<{
       :to="item.to"
       :href="item.href"
     >
-      <VIcon
-        v-if="item?.icon"
-        :icon="item?.icon"
-        class="nav-item-icon"
-      />
-      <!-- 👉 Title -->
-      <span class="nav-item-title mx-4 yt-sidebar-text">
-        {{ item.title }}
-      </span>
-      <!-- <VIcon  v-if="item?.appendIcon"
-        :icon="item?.appendIcon"
-      /> -->
+      <div class="d-flex align-center">
+        <VIcon
+          v-if="item?.icon"
+          :icon="item?.icon"
+          class="nav-item-icon"
+        />
+        <!-- 👉 Title -->
+        <span class="nav-item-title mx-4 yt-sidebar-text">
+          {{ item.title }}
+        </span>
+      </div>
     </Component>
   </li>
 </template>

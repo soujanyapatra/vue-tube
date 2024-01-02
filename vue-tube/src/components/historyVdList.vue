@@ -5,7 +5,6 @@ import useVideo from '../composables/useVideo'
 // interface
 interface Props {
   video: any
-  isTimeStampVisible?: boolean
 }
 
 // props
@@ -21,57 +20,48 @@ const { convertViews, formatTimeDifference } = useVideo()
   <div class="yt-video">
     <VRow>
       <VCol
-        xl="3"
-        lg="3"
-        md="4"
-        sm="12"
         cols="12"
       >
-        <VCard
-          class="yt-video__card"
-        >
-          <VImg :src="props?.video?.snippet?.thumbnails?.medium?.url" />
-        </VCard>
+        <div class="d-flex justify-center">
+          <VCard
+            class="yt-video__card"
+          >
+            <VImg class="yt-video__img" :src="props?.video?.snippet?.thumbnails?.medium?.url" />
+          </VCard>
+        </div>
       </VCol>
       <VCol
-        xl="9"
-        lg="9"
-        md="8"
-        sm="12"
         cols="12"
       >
         <div class="yt-video0-card__description-info">
-          <div class="d-flex justify-space-between"> 
+          <div class="d-flex justify-space-between">
             <div class="d-flex align-center yt-video__card-title">
               {{ props?.video?.snippet?.title }}
             </div>
-            <div>
-              <VBtn
-                icon=""
-                variant="plain"
-                class="float-right"
-              >
-                <VIcon class="yt-video__icon" icon="mdi-dots-vertical" />
-              </VBtn>
-            </div>
+            <VBtn
+              icon=""
+              variant="plain"
+              class="float-right"
+            >
+              <VIcon class="yt-video__icon" icon="mdi-dots-vertical" />
+            </VBtn>
+          </div>
+          <div class="yt-video__channel-title">
+            {{ props?.video?.snippet?.channelTitle }}
           </div>
           <div class="d-flex">
-            <div class="yt-video__channel-title">
-              {{ props?.video?.snippet?.channelTitle }}
-            </div>
-            <div class="yt-video__views mx-2">
+            <div class="yt-video__views">
               {{ convertViews(props?.video?.statistics?.viewCount) }}
             </div>
             <div class="yt-video__views mx-3">
               {{ formatTimeDifference(moment(props?.video?.snippet?.publishedAt)) }}
             </div>
           </div>
-          <div class="yt-video__description">
-            {{ props?.video?.snippet?.description.substring(0, 200) }}
-          </div>
         </div>
       </VCol>
     </VRow>
+    <!-- <VRow>
+    </VRow> -->
   </div>
 </template>
 
@@ -83,6 +73,11 @@ const { convertViews, formatTimeDifference } = useVideo()
     &__card {
       border-radius: 0.75rem;
     }
+    &__img {
+      img {
+        border-radius: 30px;
+      }
+    }
 
     &__card-title {
       overflow: hidden;
@@ -90,10 +85,10 @@ const { convertViews, formatTimeDifference } = useVideo()
       color: #0f0f0f;
       cursor: pointer;
       font-family: Roboto, Arial, sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
       -webkit-line-clamp: 2;
-      line-height: 1.2rem;
+      line-height: 1rem;
       max-block-size: 4rem;
       text-overflow: ellipsis;
       white-space: normal;
@@ -102,7 +97,7 @@ const { convertViews, formatTimeDifference } = useVideo()
     &__channel-title {
       overflow: hidden;
       color: #606060;
-      font-size: 0.875rem;
+      font-size: 0.675rem;
       font-weight: 500;
       text-overflow: ellipsis;
     }
@@ -111,20 +106,22 @@ const { convertViews, formatTimeDifference } = useVideo()
       overflow: hidden;
       color: #606060;
       font-family: Roboto, Arial, sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.675rem;
       font-weight: 500;
       -webkit-line-clamp: 2;
     }
     &__description {
       color: #606060;
-      padding-top: 0.2rem;
+      padding-top: 0.5rem;
       font-family: "Roboto","Arial",sans-serif;
       font-size: 0.875rem;
       line-height: 1.2rem;
       font-weight: 400;
       overflow: hidden;
+      display: block;
       max-height: 3.6rem;
       -webkit-line-clamp: 2;
+      display: box;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;

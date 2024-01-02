@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useVideoStore } from '../store/videolist'
-import WatchLaterVideoCard from '@/components/watchLaterVideoCard.vue';
-
+import VdSide from '@/components/vdSideList.vue';
+import CustomVCard from '@/components/customVCard.vue'
 // Composable
 const video = useVideoStore()
 const { trendingMusicsList } = storeToRefs(video)
@@ -35,82 +35,26 @@ onMounted(() => {
 <template>
   <div class="yt-watch-later">
     <VRow>
-      <VCol cols="3">
+      <VCol
+        xl="3"
+        lg="4"
+        md="12"
+        sm="12"
+        cols="12">
         <div class="d-flex justify-center">
-          <VCard height="850" style="background:linear-gradient(rgb(17, 69, 114) 5%, rgba(17, 69, 114, 0.298) 14%, rgb(17, 69, 114) 57%)">
-            <div class="yt-watch-later__video-card pa-5 mx-4">
-              <VCard
-                height="170"
-                width="300"
-              >
-                <VImg :src="trendingMusicsList[0]?.snippet?.thumbnails?.medium?.url" />
-              </VCard>
-              <div class="yt-watch-later__watch-title">
-                Watch later
-              </div>
-              <span class="yt-watch-later__sub-details mt-2">2 videos No views Updated today</span>
-              <div>
-                <IconBtn class="yt-watch-later__icon-btn">
-                  <VIcon icon="tabler-download" />
-                </IconBtn>
-                <VMenu open-on-click>
-                  <template #activator="{ props: activate }">
-                    <IconBtn v-bind="activate" class="yt-watch-later__icon-btn">
-                      <VIcon icon="tabler-dots-vertical" />
-                    </IconBtn>
-                  </template>
-                  <VCard>
-                    <VList>
-                      <VListItem @click="">
-                        <template #title>
-                           Add videos
-                        </template>
-                        <template #prepend>
-                          <VIcon icon="mdi-plus" />
-                        </template>
-                      </VListItem>
-                      <VListItem @click="">
-                        <template #title>
-                           Remove watched videos
-                        </template>
-                        <template #prepend>
-                          <VIcon icon="mdi-minus-circle-outline" />
-                        </template>
-                      </VListItem>
-                    </VList>
-                  </VCard>
-                </VMenu>
-              </div>
-              <div class="mt-5">
-                <VBtn variant="text" class="yt-watch-later__buttons">
-                  <template #prepend>
-                    <VIcon icon="mdi-play" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Play all
-                    </div>
-                  </template>
-                </VBtn>
-                <VBtn
-                  variant="text" 
-                  class="yt-watch-later__buttons mx-3"
-                >
-                  <template #prepend>
-                    <VIcon icon="tabler-arrows-shuffle" />
-                  </template>
-                  <template #default>
-                    <div class="yt-watch-later__btn-content">
-                      Shuffle
-                    </div>
-                  </template>
-                </VBtn>
-              </div>
-            </div>
-          </VCard>
+          <CustomVCard
+            :video="trendingMusicsList[0]" 
+            card-color="linear-gradient(rgb(17, 69, 114) 5%, rgba(17, 69, 114, 0.298) 14%, rgb(17, 69, 114) 57%)"
+            type="watchLater"
+          />
         </div>
       </VCol>
-      <VCol cols="9">
+      <VCol 
+        xl="9"
+        lg="8"
+        md="12"
+        sm="12"
+        cols="12">
         <div>
           <VMenu open-on-click>
             <template #activator="{ props: activate }">
@@ -146,7 +90,7 @@ onMounted(() => {
                   class="pa-2"
                   :class="[index % 2 === 0 ? 'bg-grey-lighten-2' : '']"
                 >
-                  <WatchLaterVideoCard :video="details" icon="mdi-drag-horizontal-variant" />
+                  <VdSide :video="details" icon="mdi-drag-horizontal-variant" />
                 </div>
               </template>
             </VInfiniteScroll>

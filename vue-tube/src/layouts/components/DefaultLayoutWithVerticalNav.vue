@@ -43,12 +43,14 @@ const { searchModelValue } = storeToRefs(video)
   <VerticalNavLayout>
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
-        <VRow>
+        <VRow class="yt-navbar-list">
           <VCol 
-            cols="12"
             lg="1"
             md="1"
-            sm="1">
+            sm="1"
+            cols="1"
+            class="d-flex justify-center"
+            >
             <IconBtn
               class="ms-n3 d-lg-none"
               @click="toggleVerticalOverlayNavActive(true)"
@@ -57,11 +59,10 @@ const { searchModelValue } = storeToRefs(video)
             </IconBtn>
           </VCol>
           <VCol
-            cols="12"
             lg="9"
-            md="8"
-            sm="7"
-            class="d-flex justify-center"
+            md="9"
+            sm="8"
+            cols="7"
           >
             <div class="d-flex yt-topbar__search-tag align-center">
               <VTextField
@@ -85,18 +86,18 @@ const { searchModelValue } = storeToRefs(video)
             </div>
           </VCol>
           <VCol
-            cols="12"
             lg="2"
-            md="3"
-            sm="4"
+            md="2"
+            sm="3"
+            cols="4"
+            class="d-flex justify-end"
           >
-            <IconBtn class="mx-2">
+            <IconBtn>
               <VIcon :icon="startVideoIcon" />
             </IconBtn>
-            <IconBtn class="me-2">
+            <IconBtn>
               <VIcon :icon="notificationIcon" />
             </IconBtn>
-            <NavbarThemeSwitcher class="me-2" />
             <UserProfile />
           </VCol>
         </VRow>
@@ -318,7 +319,7 @@ const { searchModelValue } = storeToRefs(video)
         href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"
         target="_blank"
         rel="noopener noreferrer"
-        style="margin-left: 7px;"
+        style="margin-left: 0.4375rem;"
       />
     </template>
 
