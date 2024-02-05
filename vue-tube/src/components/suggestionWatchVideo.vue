@@ -7,7 +7,6 @@ const video = useVideoStore()
 const { suggestionVideos } = storeToRefs(video)
 const { getSuggestionVideoList } = useVideoStore()
 
-
 // Hooks
 onMounted(() => {
   getSuggestionVideoList()

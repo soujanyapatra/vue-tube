@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import moment from 'moment'
-import useVideo from '../composables/useVideo'
+import useVideo from '@/composables/useVideo'
 
 // interface
 interface Props {

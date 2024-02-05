@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVideoStore } from '../store/videolist'
+import { useVideoStore } from '@/store/videolist'
 import TdVdCard from '@/components/tdVdCard.vue'
 
 // Composable

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVideoStore } from '../store/videolist'
+import { useVideoStore } from '@/store/videolist'
 import HistoryVdList from '@/components/historyVdList.vue';
 
 //Interface
