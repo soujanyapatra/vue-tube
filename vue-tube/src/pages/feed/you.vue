@@ -4,10 +4,12 @@ import googleIcon from '@/Icons/youtube/google.svg'
 import multiImageIcon from '@/Icons/youtube/multi-image.svg'
 import ytHistory from '@/Icons/youtube/history.svg'
 import HistoryVideoList from '@/components/historyVideoList.vue'
+import { useI18n } from 'vue-i18n';
 
 // Composables
 const userStore = useUserStore()
 const { userData } = storeToRefs(userStore)
+const { t } = useI18n();
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const { userData } = storeToRefs(userStore)
       <div class="yt-self-feed-you__name">
         {{ userData?.given_name + userData?.family_name }}
       </div>
-      <div class="yt-self-feed-you__create-channel">Create a chanel</div>
+      <div class="yt-self-feed-you__create-channel">{{ t('you.createAChanel') }}</div>
       <div class="mt-1">
         <VBtn variant="text" class="yt-self-feed-you__buttons">
           <template #prepend>
@@ -29,7 +31,7 @@ const { userData } = storeToRefs(userStore)
           </template>
           <template #default>
             <div class="yt-watch-later__btn-content">
-              Switch account
+              {{ t('you.switchAccount') }}
             </div>
           </template>
         </VBtn>
@@ -39,7 +41,7 @@ const { userData } = storeToRefs(userStore)
           </template>
           <template #default>
             <div class="yt-watch-later__btn-content">
-              Google Account
+              {{ t('you.googleAccount') }}
             </div>
           </template>
         </VBtn>
@@ -51,7 +53,7 @@ const { userData } = storeToRefs(userStore)
       <div class="d-flex align-center yt-self-feed-you__header-title">
         <VIcon :icon="ytHistory" />
         <div>
-          History
+          {{ t('you.history') }}
         </div>
       </div>
     </RouterLink>
@@ -62,7 +64,7 @@ const { userData } = storeToRefs(userStore)
       <div class="d-flex align-center yt-self-feed-you__header-title">
         <VIcon :icon="ytHistory" />
         <div>
-          Watch later
+          {{ t('you.watchLater') }}
         </div>
       </div>
     </RouterLink>

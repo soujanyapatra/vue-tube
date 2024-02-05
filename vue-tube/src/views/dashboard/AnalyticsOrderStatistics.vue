@@ -188,6 +188,6 @@ const moreList = [
 
 <style lang="scss" scoped>
 .card-list {
-  --v-card-list-gap: 21px;
+  --v-card-list-gap: 1.3125rem;
 }
 </style>

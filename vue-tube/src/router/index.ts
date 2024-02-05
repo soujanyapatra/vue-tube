@@ -27,11 +27,6 @@ const router = createRouter({
           component: () => import('../pages/trending.vue'),
         },
         {
-          path: 'shorts',
-          name: 'Shorts',
-          component: () => import('../pages/shorts.vue'),
-        },
-        {
           path: '/watch',
           name: 'WatchVideo',
           component: () => import('../pages/watch.vue'),
@@ -87,6 +82,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  localStorage.setItem('activeTab', to?.name)
   if (to.name !== 'Login' && !checkAuth())
     next({ name: 'Login' })
   else if (checkAuth() && (to.name === 'Login' || to.name === 'Register'))

@@ -2,11 +2,13 @@
 import useVideo from '@/composables/useVideo'
 import { useVideoStore } from '@/store/videolist'
 import SuggestionWatchVideo from '@/components/suggestionWatchVideo.vue'
+import { useI18n } from 'vue-i18n';
 
 // Composable
 const video = useVideoStore()
 const { videoDetails } = storeToRefs(video)
 const { getVideoById } = useVideoStore()
+const { t } = useI18n();
 
 // Composable
 const { convertViews } = useVideo()
@@ -46,7 +48,7 @@ onMounted(() => {
               {{ videoDetails?.snippet?.channelTitle }}
             </div>
             <div>
-              subscriber
+              {{ t('watch.subscriber') }}
             </div>
           </div>
         </div>
@@ -57,7 +59,7 @@ onMounted(() => {
           >
             <template #default>
               <div class="yt-video-watch__btn-content">
-                Subscribe
+                {{ t('watch.subscribe') }}
               </div>
             </template>
           </VBtn>
@@ -89,7 +91,7 @@ onMounted(() => {
             </template>
             <template #default>
               <div class="yt-video-watch__btn-content">
-                Share
+                {{ t('watch.share') }}
               </div>
             </template>
           </VBtn>
@@ -102,7 +104,7 @@ onMounted(() => {
             </template>
             <template #default>
               <div class="yt-video-watch__btn-content">
-                Download
+                {{ t('watch.download') }}
               </div>
             </template>
           </VBtn>
@@ -115,7 +117,7 @@ onMounted(() => {
             </template>
             <template #default>
               <div class="yt-video-watch__btn-content">
-                Save
+                {{ t('watch.save') }}
               </div>
             </template>
           </VBtn>
@@ -168,7 +170,7 @@ onMounted(() => {
     background-color: #E5E5E5 !important; 
   }
   &__btn-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__subscribe-btn {
     text-transform: capitalize;

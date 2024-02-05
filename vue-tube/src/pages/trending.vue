@@ -4,11 +4,14 @@ import TrendingNow from '@/components/trendingNow.vue'
 import TrendingMusic from '@/components/trendingMusic.vue'
 import TrendingGame from '@/components/trendingGame.vue'
 import TrendingMovie from '@/components/trendingMovie.vue'
+import { useI18n } from 'vue-i18n';
 
+// Composable
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n();
 
-// Data
+// Computed
 const activeTab = computed(() => {
   if (route.hash)
     return route.hash.replaceAll('#', '')
@@ -16,12 +19,13 @@ const activeTab = computed(() => {
   return 'now'
 })
 
+//Data
 // tabs
 const tabs = ref<any[]>([
-  { title: 'Now', tab: 'now' },
-  { title: 'Music', tab: 'music' },
-  { title: 'Gaming', tab: 'gaming' },
-  { title: 'Movies', tab: 'movies' },
+  { title: t('now'), tab: 'now' },
+  { title: t('music'), tab: 'music' },
+  { title: t('gaming'), tab: 'gaming' },
+  { title: t('movies'), tab: 'movies' },
 ])
 
 // Methods
@@ -51,7 +55,7 @@ const goTo = (v: any) => {
         </VCol>
         <VCol cols="8">
           <div class="d-flex mt-3">
-            <h1>Trending</h1>
+            <h1>{{ t('trending') }}</h1>
           </div>
         </VCol>
       </VCol>

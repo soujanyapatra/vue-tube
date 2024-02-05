@@ -32,7 +32,7 @@ const { convertViews, formatTimeDifference } = useVideo()
             <div v-if="props?.number" class="d-flex mt-10 mr-2">
               {{ props?.number }}
             </div>
-            <div v-if="props?.icon" class="d-flex">
+            <div v-if="props?.icon" class="d-flex mt-6 mr-1">
               <VIcon :icon="props?.icon" />
             </div>
           </div>
@@ -90,7 +90,7 @@ const { convertViews, formatTimeDifference } = useVideo()
     }
     &__img {
       img {
-        border-radius: 30px;
+        border-radius: 1.875rem;
       }
     }
 

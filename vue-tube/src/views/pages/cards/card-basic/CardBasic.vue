@@ -467,7 +467,7 @@ const isCardDetailsVisible = ref(false)
 
 .membership-pricing {
   sup {
-    inset-block-start: 9px;
+    inset-block-start: 0.5625rem;
   }
 }
 </style>

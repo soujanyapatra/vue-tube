@@ -75,7 +75,7 @@ const { convertViews, formatTimeDifference } = useVideo()
     }
     &__img {
       img {
-        border-radius: 30px;
+        border-radius: 1.875rem;
       }
     }
 

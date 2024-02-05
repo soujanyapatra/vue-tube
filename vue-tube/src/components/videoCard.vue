@@ -139,8 +139,8 @@ const goToWatchScreen = () => {
       margin-inline-start: 18%;
     }
     &__home-more-buttons {
-      width: 30px;
-      height: 30px;
+      width: 1.875rem;
+      height: 1.875rem;
     }
     &__icon {
       color: black;

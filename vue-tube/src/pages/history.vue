@@ -1,42 +1,44 @@
 <script setup lang="ts">
 import { useVideoStore } from '@/store/videolist'
 import TdVdCard from '@/components/tdVdCard.vue'
+import { useI18n } from 'vue-i18n';
 
 // Composable
 const video = useVideoStore()
 const { trendingVideos } = storeToRefs(video)
 const { trendingVideoList } = useVideoStore()
+const { t } = useI18n();
 
 // Data
 const searchFromHistory = ref<string>('')
 
 const buttonGroupList = ref<any[]>([
   {
-    text: 'Clear all watch history',
+    text: t('history.clearAllWatchHistory'),
     prependIcon: 'mdi-trash-can-outline',
     type: 'button',
     variant: 'text',
   },
   {
-    text: 'Pause watch history',
+    text: t('history.pauseWatchHistory'),
     prependIcon: 'mdi-pause',
     type: 'button',
     variant: 'text',
   },
   {
-    text: 'Manage all history',
+    text: t('history.manageAllHistory'),
     prependIcon: 'mdi-cog',
     type: 'button',
     variant: 'text',
   },
   {
-    text: 'Comments',
+    text: t('history.comments'),
   },
   {
-    text: 'Community post',
+    text: t('history.communityPost'),
   },
   {
-    text: 'Live chat',
+    text: t('history.liveChat'),
   },
 ])
 
@@ -52,7 +54,7 @@ onMounted(async () => {
 <template>
   <div class="yt-watch-history">
     <h1 class="yt-watch-history__main-title">
-      Watch history
+      {{ t('history.watchHistory') }}
     </h1>
     <div class="d-flex space-between yt-watch-history__section">
       <VRow>

@@ -53,7 +53,7 @@
   // To keep upgrade to pro button on top of v-layout
   z-index: 999;
   inset-block-end: 5%;
-  inset-inline-end: 79px;
+  inset-inline-end: 4.9375rem;
 
   .v-application &.v-btn.v-btn--elevated {
     box-shadow: 0 1px 20px 1px rgb(var(--v-theme-error)) !important;

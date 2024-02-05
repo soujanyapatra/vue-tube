@@ -2,10 +2,13 @@
 import { useVideoStore } from '../store/videolist'
 import VdSide from '@/components/vdSideList.vue';
 import CustomVCard from '@/components/customVCard.vue'
+import { useI18n } from 'vue-i18n';
+
 // Composable
 const video = useVideoStore()
 const { trendingMusicsList } = storeToRefs(video)
 const { trendingMusicList } = useVideoStore()
+const { t } = useI18n();
 
 // Data
 const sortList = ref<any[]>([
@@ -60,7 +63,7 @@ onMounted(() => {
             <template #activator="{ props: activate }">
               <VBtn v-bind="activate" variant="text" class="yt-watch-later__sort-btn">
                 <template #default>
-                  Sort
+                  {{ t('sort') }}
                 </template>
                 <template #prepend>
                   <VIcon icon="mdi-sort-variant" />
@@ -111,7 +114,7 @@ onMounted(() => {
   }
   &__sub-details {
     font-family: "Roboto","Arial",sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.8rem;
     font-weight: 400;
     overflow: hidden;
@@ -135,7 +138,7 @@ onMounted(() => {
     background-color: white !important; 
   }
   &__btn-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__sort-btn {
     text-transform: capitalize;

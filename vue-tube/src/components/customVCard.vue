@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 // interface
 interface Props {
   video?: any
@@ -8,6 +10,7 @@ interface Props {
 
 // props
 const props = defineProps<Props>()
+const { t } = useI18n()
 
 </script>
 
@@ -24,7 +27,7 @@ const props = defineProps<Props>()
       <div class="yt-watch-later__watch-title">
         {{ props?.type === 'like' ? 'Liked video' : 'Watch later' }}
       </div>
-      <span class="yt-watch-later__sub-details mt-2">2 videos No views Updated today</span>
+      <span class="yt-watch-later__sub-details mt-2">{{ t('watchVideoDesc') }}</span>
       <div>
         <IconBtn class="yt-watch-later__icon-btn">
           <VIcon icon="tabler-download" />
@@ -39,7 +42,7 @@ const props = defineProps<Props>()
             <VList>
               <VListItem @click="">
                 <template #title>
-                  Add videos
+                  {{ t('addVideos') }}
                 </template>
                 <template #prepend>
                   <VIcon icon="mdi-plus" />
@@ -47,7 +50,7 @@ const props = defineProps<Props>()
               </VListItem>
               <VListItem @click="">
                 <template #title>
-                  Remove watched videos
+                  {{ t('removeWatchedVideos') }}
                 </template>
                 <template #prepend>
                   <VIcon icon="mdi-minus-circle-outline" />
@@ -64,7 +67,7 @@ const props = defineProps<Props>()
           </template>
           <template #default>
             <div class="yt-watch-later__btn-content">
-              Play all
+              {{ t('playAll') }}
             </div>
           </template>
         </VBtn>
@@ -77,7 +80,7 @@ const props = defineProps<Props>()
           </template>
           <template #default>
             <div class="yt-watch-later__btn-content">
-              Shuffle
+              {{ t('shuffle') }}
             </div>
           </template>
         </VBtn>
@@ -96,7 +99,7 @@ const props = defineProps<Props>()
   }
   &__sub-details {
     font-family: "Roboto","Arial",sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.8rem;
     font-weight: 400;
     overflow: hidden;
@@ -120,7 +123,7 @@ const props = defineProps<Props>()
     background-color: white !important; 
   }
   &__btn-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__sort-btn {
     text-transform: capitalize;
@@ -136,7 +139,7 @@ const props = defineProps<Props>()
   }
   &__sub-details {
     font-family: "Roboto","Arial",sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.8rem;
     font-weight: 400;
     overflow: hidden;
@@ -160,7 +163,7 @@ const props = defineProps<Props>()
     background-color: white !important; 
   }
   &__btn-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__sort-btn {
     text-transform: capitalize;
@@ -169,7 +172,7 @@ const props = defineProps<Props>()
 } 
 .yt-like-watch {
   &__container {
-    border-radius: 15px;
+    border-radius: 0.9375rem;
   }
 }
 </style>

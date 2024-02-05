@@ -43,7 +43,7 @@ defineProps<{
 .yt-sidebar-text {
   overflow: hidden;
   flex: 1;
-  flex-basis: 1e-9px;
+  flex-basis: 1e-0.5625rem;
   color: #0f0f0f;
   font-family: Roboto, Arial, sans-serif;
   font-size: 0.875rem;

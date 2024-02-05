@@ -1,42 +1,22 @@
 <script lang="ts" setup>
 // Icons
-import gamingIcon from '@/Icons/youtube/gaming.svg'
-import historyIcon from '@/Icons/youtube/history.svg'
-import homeIcon from '@/Icons/youtube/home.svg'
-import learningIcon from '@/Icons/youtube/learning.svg'
-import likeIcon from '@/Icons/youtube/like.svg'
-import liveIcon from '@/Icons/youtube/live.svg'
-import moviesIcon from '@/Icons/youtube/movies.svg'
-import musicIcon from '@/Icons/youtube/music.svg'
-import newsIcon from '@/Icons/youtube/news.svg'
-import notificationIcon from '@/Icons/youtube/notification.svg'
-import podcastIcon from '@/Icons/youtube/podcast.svg'
-import shoppingIcon from '@/Icons/youtube/shopping.svg'
-// import shortIcon from '@/Icons/youtube/shorts.svg'
-import sportsIcon from '@/Icons/youtube/sports.svg'
 import startVideoIcon from '@/Icons/youtube/startVideo.svg'
-import subScriptionIcon from '@/Icons/youtube/subscription.svg'
-import trendingIcon from '@/Icons/youtube/trending.svg'
-import watchLaterIcon from '@/Icons/youtube/watchLater.svg'
-import youTubePremiumIcon from '@/Icons/youtube/ytPremium.svg'
-import youTubeMusicIcon from '@/Icons/youtube/ytMusic.svg'
-import youTubeKidsIcon from '@/Icons/youtube/ytKids.svg'
-import youTubeSettingIcon from '@/Icons/youtube/ytSetting.svg'
-import youTubeFlagIcon from '@/Icons/youtube/ytFlag.svg'
-import youTubeHelpIcon from '@/Icons/youtube/ytHelp.svg'
-import youTubeFeedBackIcon from '@/Icons/youtube/ytFeedBack.svg'
-
+import notificationIcon from '@/Icons/youtube/notification.svg'
 // Components
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 import UserProfile from '@/layouts/components/UserProfile.vue'
-
 import { useVideoStore } from '@/store/videolist'
+import useNavItems from "@/composables/useNavItems"
+import { useI18n } from 'vue-i18n';
 
 // Composable
 const video = useVideoStore()
 const { searchModelValue } = storeToRefs(video)
+const { sidebarList } = useNavItems()
+const { t } = useI18n();
+
 </script>
 
 <template>
@@ -105,216 +85,48 @@ const { searchModelValue } = storeToRefs(video)
     </template>
 
     <template #vertical-nav-content>
-      <VerticalNavLink
-        :item="{
-          title: 'Home',
-          icon: homeIcon,
-          to: '/home',
-        }"
-      />
-      <!-- <VerticalNavLink
-        :item="{
-          title: 'Shorts',
-          icon: shortIcon,
-          to: '/shorts',
-        }"
-      /> -->
-      <VerticalNavLink
-        :item="{
-          title: 'Subscription',
-          icon: subScriptionIcon,
-          to: '/subscription',
-        }"
-      />
-      <VDivider class="my-2" />
-
-      <VerticalNavLink
-        :item="{
-          title: 'You',
-          appendIcon: 'mdi-chevron-right',
-          to: '/feed/you',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'History',
-          icon: historyIcon,
-          to: '/history',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Watch later',
-          icon: watchLaterIcon,
-          to: '/watch-later',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Liked video',
-          icon: likeIcon,
-          to: '/liked',
-        }"
-      />
-      <VDivider class="my-2" />
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'Explore',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Trending',
-          icon: trendingIcon,
-          to: '/trending',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Shopping',
-          icon: shoppingIcon,
-          to: '/shopping',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Music',
-          icon: musicIcon,
-          to: '/music',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Movies',
-          icon: moviesIcon,
-          to: '/movies',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Live',
-          icon: liveIcon,
-          to: '/live',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Gaming',
-          icon: gamingIcon,
-          to: '/gaming',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'News',
-          icon: newsIcon,
-          to: '/news',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Sports',
-          icon: sportsIcon,
-          to: '/sports',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Learning',
-          icon: learningIcon,
-          to: '/learning',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Podcasts',
-          icon: podcastIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VDivider class="my-2" />
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'More from YouTube',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Youtube premium',
-          icon: youTubePremiumIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Youtube Music',
-          icon: youTubeMusicIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Youtube Kids',
-          icon: youTubeKidsIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VDivider class="my-2" />
-      <VerticalNavLink
-        :item="{
-          title: 'Settings',
-          icon: youTubeSettingIcon,
-          to: '/podcasts',
-        }"
-        class="mt-3"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Report history',
-          icon: youTubeFlagIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Help',
-          icon: youTubeHelpIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Send feedback',
-          icon: youTubeFeedBackIcon,
-          to: '/podcasts',
-        }"
-      />
-      <VDivider class="my-2" />
+      <div 
+        v-for="navItem in sidebarList"
+        :key="navItem"
+      >
+        <div v-for="item in navItem.items">
+          <VerticalNavLink
+            v-if="item.type === 'navLink'"
+            :item="item?.config"
+          />
+          <VerticalNavSectionTitle
+            v-else-if="item.type === 'navTitle'"
+            :item="item?.config"
+          />
+        </div>
+        <VDivider class="my-2" />
+      </div>
       <div class="ytd-guide">
         <div class="ytd-guide__renderer">
-          <a href="https://www.youtube.com/about/">About</a>
-          <a href="https://www.youtube.com/about/press/" >Press</a>
-          <a href="https://www.youtube.com/about/copyright/" >Copyright</a><br />
-          <a href="/t/contact_us/" >Contact us</a>
-          <a href="https://www.youtube.com/creators/" >Creators</a> <br />
-          <a href="https://www.youtube.com/ads/" >Advertise</a>
-          <a href="https://developers.google.com/youtube" >Developers</a>
+          <a href="https://www.youtube.com/about/">{{ t('about') }}</a>
+          <a href="https://www.youtube.com/about/press/">{{ t('press') }}</a>
+          <a href="https://www.youtube.com/about/copyright/">{{ t('copyright') }}</a><br />
+          <a href="/t/contact_us/">{{ t('contactUs') }}</a>
+          <a href="https://www.youtube.com/creators/" >{{ t('creators') }}</a> <br />
+          <a href="https://www.youtube.com/ads/">{{ t('advertise') }}</a>
+          <a href="https://developers.google.com/youtube">{{ t('developers') }}</a>
         </div>
         <div class="ytd-guide__renderer">
-          <a href="/t/terms">Terms</a>
-          <a href="/t/privacy" >Privacy</a>
-          <a href="https://www.youtube.com/about/policies/" >Policy &amp; Safety</a> <br />
-          <a href="https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&amp;utm_source=ythp&amp;utm_medium=LeftNav&amp;utm_content=txt&amp;u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen" >How YouTube works</a> <br />
-          <a href="/new" >Test new features</a>
+          <a href="/t/terms">{{ t('terms') }}</a>
+          <a href="/t/privacy">{{ t('privacy') }}</a>
+          <a href="https://www.youtube.com/about/policies/">{{ t('policy') }} &amp; {{ t('safety') }}</a> <br />
+          <a href="https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&amp;utm_source=ythp&amp;utm_medium=LeftNav&amp;utm_content=txt&amp;u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen">
+            {{ t('howYouTubeWorks') }}
+          </a> <br />
+          <a href="/new">{{ t('testNewFeatures') }}</a>
         </div>
         <div class="ytd-guide__policy">
-          <div dir="ltr" style="display:inline">© 2024 Google LLC</div>
+          <div dir="ltr" style="display:inline">{{ t('llc') }}</div>
         </div>
       </div>
     </template>
 
     <template #after-vertical-nav-items>
-      <!-- 👉 illustration -->
       <a
         href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"
         target="_blank"
@@ -322,8 +134,6 @@ const { searchModelValue } = storeToRefs(video)
         style="margin-left: 0.4375rem;"
       />
     </template>
-
-    <!-- 👉 Pages -->
     <slot />
   </VerticalNavLayout>
 </template>

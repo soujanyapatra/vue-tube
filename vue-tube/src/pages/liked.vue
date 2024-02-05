@@ -2,28 +2,30 @@
 import { useVideoStore } from '../store/videolist'
 import VdSide from '@/components/vdSideList.vue';
 import CustomVCard from '@/components/customVCard.vue'
+import { useI18n } from 'vue-i18n';
 
 // Composable
 const video = useVideoStore()
 const { trendingMoviesList } = storeToRefs(video)
 const { trendingMovieList } = useVideoStore()
+const { t } = useI18n();
 
 // Data
 const sortList = ref<any[]>([
   {
-    label: 'Date added (newest)'
+    label: t('like.dateAddedNewest')
   },
   {
-    label: 'Date added (oldest)'
+    label: t('like.dateAddedOldest')
   },
   {
-    label: 'Most popular'
+    label: t('like.mostPopular')
   },
   {
-    label: 'Date published (newest)'
+    label: t('like.datePublishedNewest')
   },
   {
-    label: 'Date published (oldest)'
+    label: t('like.datePublishedOldest')
   }
 ])
 
@@ -62,7 +64,7 @@ onMounted(() => {
             <template #activator="{ props: activate }">
               <VBtn v-bind="activate" variant="text" class="yt-watch-later__sort-btn">
                 <template #default>
-                  Sort
+                  {{ t('sort') }}
                 </template>
                 <template #prepend>
                   <VIcon icon="mdi-sort-variant" />
@@ -113,7 +115,7 @@ onMounted(() => {
   }
   &__sub-details {
     font-family: "Roboto","Arial",sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.8rem;
     font-weight: 400;
     overflow: hidden;
@@ -137,7 +139,7 @@ onMounted(() => {
     background-color: white !important; 
   }
   &__btn-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
   &__sort-btn {
     text-transform: capitalize;

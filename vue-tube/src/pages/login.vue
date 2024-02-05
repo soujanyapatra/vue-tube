@@ -68,7 +68,7 @@ const getSignUpRequest = (v: any) => {
 
       <VCardText class="pt-2">
         <h5 class="text-h5 mb-1">
-          Welcome to vuetu
+          Welcome to vuetube
         </h5>
       </VCardText>
 

@@ -3,118 +3,13 @@ import { isEmpty } from 'lodash'
 import { useRouter } from 'vue-router'
 import { googleLogout } from 'vue3-google-login'
 import { useUserStore } from '@/store/userStore'
-import multiImageIcon from '@/Icons/youtube/multi-image.svg'
-import googleIcon from '@/Icons/youtube/google.svg'
-import signOutIcon from '@/Icons/youtube/sign-out.svg'
-import studioIcon from '@/Icons/youtube/ytStudio.svg'
-import purchaseIcon from '@/Icons/youtube/ytPurchase.svg'
-import dataIcon from '@/Icons/youtube/your-data.svg'
-import appearanceIcon from '@/Icons/youtube/apprearance.svg'
-import langIcon from '@/Icons/youtube/lang.svg'
-import restrictIcon from '@/Icons/youtube/restriction.svg'
-import locationIcon from '@/Icons/youtube/location.svg'
-import keyShortCutIcon from '@/Icons/youtube/key-shortcuts.svg'
-import settingIcon from '@/Icons/youtube/ytSetting.svg'
-import helpIcon from '@/Icons/youtube/ytHelp.svg'
-import feedBackIcon from '@/Icons/youtube/ytFeedBack.svg'
-import rightChevronIcon from '@/Icons/youtube/cheveron.svg'
+import useListItems from '@/composables/useListItems'
 
 // Composables
 const userStore = useUserStore()
 const { userData, dummyData } = storeToRefs(userStore)
 const router = useRouter()
-
-// Data
-const listItems = ref<any[]>([
-  {
-    items: [
-      {
-        label: 'Google account',
-        prependIcon: googleIcon,
-      },
-      {
-        label: 'Switch account',
-        prependIcon: multiImageIcon,
-        appendIcon: rightChevronIcon,
-      },
-      {
-        label: 'Sign out',
-        prependIcon: signOutIcon,
-      },
-    ]
-  },
-  {
-    items: [
-      {
-        label: 'YouTube studio',
-        prependIcon: studioIcon,
-        appendIcon: '',
-      },
-      {
-        label: 'Purchases and membership',
-        prependIcon: purchaseIcon,
-        appendIcon: '',
-      }
-    ]
-  },
-  {
-    items: [
-      {
-        label: 'Your data in YouTube',
-        prependIcon: dataIcon,
-        appendIcon: '',
-      },
-      {
-        label: 'Appearance: Device theme',
-        prependIcon: appearanceIcon,
-        appendIcon: rightChevronIcon,
-      },
-      {
-        label: 'Language: English',
-        prependIcon: langIcon,
-        appendIcon: rightChevronIcon,
-      },
-      {
-        label: 'Restricted Mode: Off',
-        prependIcon: restrictIcon,
-        appendIcon: rightChevronIcon,
-      },
-      {
-        label: 'Location: India',
-        prependIcon: locationIcon,
-        appendIcon: rightChevronIcon,
-      },
-      {
-        label: 'Keyboard shortcuts',
-        prependIcon: keyShortCutIcon,
-        appendIcon: '',
-      },
-    ]
-  },
-  {
-    items: [
-      {
-        label: 'Setting',
-        prependIcon: settingIcon,
-        appendIcon: '',
-      },
-    ]
-  },
-  {
-    items: [
-      {
-        label: 'Help',
-        prependIcon: helpIcon,
-        appendIcon: '',
-      },
-      {
-        label: 'Send feedback',
-        prependIcon: feedBackIcon,
-        appendIcon: '',
-      },
-    ]
-  }
-])
+const { listItems } = useListItems()
 
 // Methods
 const logout = () => {
@@ -124,6 +19,19 @@ const logout = () => {
   nextTick(() => {
     router.push('/login')
   })
+}
+
+const handleAction = (action: string) => {
+  switch(action) {
+    case 'signOut':
+      logout()
+      break;
+    case 'setting': 
+      console.log('setting condition',action)
+      break;
+    default: 
+      console.log(action)
+  }
 }
 
 // Hooks
@@ -171,7 +79,7 @@ onMounted(() => {
   
           <div v-for="(list, parentIndex) in listItems" :key="parentIndex">
             <div v-for="(i, childIndex) in list.items" :key="childIndex" >
-              <VListItem class="yt-user-profile__dropdown" @click="">
+              <VListItem class="yt-user-profile__dropdown" @click="handleAction(i?.action)">
                 <template #prepend v-if="i.prependIcon">
                   <VIcon :icon="i.prependIcon" />
                 </template>
@@ -183,7 +91,7 @@ onMounted(() => {
                 </template>
               </VListItem>
             </div>
-            <VDivider />
+            <VDivider v-if="parentIndex < listItems.length-1" />
           </div>
         </VList>
       </VCard>
